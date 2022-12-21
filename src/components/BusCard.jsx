@@ -1,6 +1,16 @@
+import React, { useState, useRef } from "react";
+
 function BusCard() {
 
 
+
+  
+  const [visible, setVisible] = useState(false);
+  const pageRef = useRef(null);
+  const handleClick = () => {
+    // Toggle the visibility of the page div
+    setVisible(!visible);
+  };
   return (
     <>
       <div className=" flex flex-row justify-around bg-zinc-100 mt-6 shadow-2xl m-0 ">
@@ -41,4 +51,22 @@ function BusCard() {
           >
             Select
           </button>
+        </div>
+      </div>
+      <div
+        className="fl  m-0"
+        ref={pageRef}
+        style={{ display: visible ? "block" : "none" }}
+      >
+        This is the page content
+        <img
+          src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YnVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="bus"
+          className="object-contain   max-h-48 p-4"
+        />
+      </div>
+    </>
+  );
+}
+
 export default BusCard;
