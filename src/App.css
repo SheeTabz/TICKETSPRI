@@ -8,6 +8,13 @@
     height: 80vh;
     background-size: cover;
 }
+.background-full{
+    background-image: url('/public/assets/images/index-topbg.jpg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
 @layer components{
     .formsearch{
         @apply flex space-x-2 justify-center items-center text-base
