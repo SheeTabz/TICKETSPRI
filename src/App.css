@@ -8,9 +8,41 @@
     height: 80vh;
     background-size: cover;
 }
-.background-full{
-    background-image: url('/public/assets/images/index-topbg.jpg');
-    background-repeat: no-repeat;
-    height: 100vh;
-    background-size: cover;
-}
+@layer components{
+    .formsearch{
+        @apply flex space-x-2 justify-center items-center text-base
+    }
+    form>.search{
+        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md
+    }
+    .search>input{
+        @apply bg-transparent
+    }
+    .search>select{
+        @apply   
+        w-full
+       outline-none
+        text-gray-700
+        bg-white 
+        rounded
+        transition
+        ease-in-out
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+    }
+    .search{
+        @apply text-gray-500
+    }
+    .button{
+        @apply border-solid border-2 border-transparent rounded-md px-8 py-2 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold h-full
+    }
+    .submit{
+        @apply border-solid border-2 border-transparent rounded-b-md px-8 py-3 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold w-full  px-0
+    }
+    .form>input{
+        @apply border-2 border-gray-200 px-3 py-4 focus:outline-gray-200 px-5
+    }
+    .btn{
+        @apply text-xl text-cyan-500 selection:text-blue-600  focus:underline
+    }
+  
+  }
