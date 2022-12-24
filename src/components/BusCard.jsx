@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import '../bus.css';
+import NavBar2 from "./NavBar2";
 
 function BusCard() {
   const [visible, setVisible] = useState(false);
@@ -9,6 +11,7 @@ function BusCard() {
   };
   return (
     <>
+    <NavBar2/>
       <div className=" flex flex-row justify-around shadow-lg  width">
         {/* div holding image */}
         <div className=" flex flex-col justify-evenly  ">
