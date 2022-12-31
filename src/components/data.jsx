@@ -30,5 +30,81 @@ const nav2 = [
     }
 ]
 
+const cars =[
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
+    {
+        name: 'Planet Coach',
+        desc: '2*2(49) AC Seats',
+        no: 49,
+        from: 'Nairobi',
+        to: 'Garissa',
+        price: 1500,
+    },
 
-export {nav1, nav2};
+]
+
+
+export {nav1, nav2, cars};
