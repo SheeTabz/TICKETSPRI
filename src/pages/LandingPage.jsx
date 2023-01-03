@@ -1,15 +1,20 @@
 import React from 'react'
+import AboutUs from '../components/AboutUs'
+import Footer from '../components/Footer'
 import Nav3 from '../components/Nav3'
+import SearchLoc from '../components/SearchLoc'
 
 function LandingPage() {
   return (
+   <>
     <div className='background'>
  <Nav3/>
- <div className=''>
-    <h1 className='text-white text-3xl '>Where will you go next</h1>
- </div>
-     </div>
+<SearchLoc/>
 
+     </div>
+     <AboutUs/>
+     <Footer/>
+     </>
   )
 }
 

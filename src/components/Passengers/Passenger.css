@@ -1,0 +1,54 @@
+body {
+  background-color: #ccc;
+}
+.form-pannels {
+  background-color: white;
+  padding: 15px;
+  width: 100%;
+  margin: 25px 0;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+.input-group {
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.input-group label {
+  color: blue;
+}
+.input-group .input_field {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+#table {
+  padding: 30px;
+}
+.input-group-2 .input_field {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-group-2 label {
+  color: blue;
+}
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+p {
+  font-weight: medium;
+  font-style: italic;
+}
+p span {
+  font-weight: bolder;
+  font-style: normal;
+  color: green;
+}
