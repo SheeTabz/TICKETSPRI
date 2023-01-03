@@ -1,0 +1,61 @@
+.parent {
+  width: 200px;
+}
+.seat {
+  border: 2px solid lime;
+  height: 30px;
+  width: 30px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 25px;
+}
+.after {
+  width: 45%;
+  min-height: 50vh;
+  border: 2px solid pink;
+  width: 200px;
+}
+@media only screen and (max-width: 450px) {
+  * {
+    font-size: 10px;
+  }
+  .parent {
+    width: 32%;
+    contain: content;
+  }
+  .driverDoor {
+    justify-content: space-between;
+    font-size: 12px;
+    min-width: 30%;
+  }
+  .seat {
+    height: 20px;
+    width: 20px;
+    font-size: 7px;
+    line-height: 12.5px;
+  }
+  .backRow {
+    justify-content: space-around;
+  }
+}
+@media only screen and (max-width: 368px) {
+  * {
+    font-size: 7px;
+  }
+  .parent {
+    width: 30%;
+    contain: content;
+  }
+  .driverDoor {
+    justify-content: space-between;
+    font-size: 10px;
+    min-width: 28%;
+  }
+  .seat {
+    height: 15px;
+    width: 15px;
+  }
+  .backRow {
+    justify-content: space-around;
+  }
+}
