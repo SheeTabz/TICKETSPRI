@@ -59,3 +59,19 @@
     justify-content: space-around;
   }
 }
+
+.test1 {
+  height: 200px;
+  width: 200px;
+  border: solid 2px red;
+}
+
+.test2 {
+  height: 200px;
+  width: 200px;
+  border: solid 2px lime;
+}
+.input{
+background-color: pink;
+width: 10%;
+}

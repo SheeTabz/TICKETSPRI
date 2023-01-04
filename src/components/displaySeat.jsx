@@ -1,18 +1,32 @@
+import { waitForElementToBeRemoved } from "@testing-library/react";
 import { useState, useEffect } from "react";
 import "./displayseat.css";
 function DisplaySeats() {
   const [isSelected, setIsSelected] = useState(false);
-  const handleClick = () => {
-    setIsSelected(!isSelected);
-  };
+
   const [users, setUsers] = useState([]);
+  const [waited, setWaited] = useState([]);
+  const [changed, setChanged] = useState(0);
+  const [values, setValues] = useState([]);
+  const handleClick = (event) => {
+    const value = [event.target.value];
+    //console.log(value);
+    //setValues([...value, values]);
+  };
+  
+  //console.log(values);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then((response) => response.json())
       .then((data) => setUsers(data));
-  }, []);
-  // console.log(users);
+  }, [changed]);
+  async function usedData() {
+    const user = await users;
+    setWaited(user.map((item) => item.id));
+  }
+  usedData();
+
   return (
     <>
       {/* parent div */}
@@ -31,14 +45,12 @@ function DisplaySeats() {
               <div
                 className="seat"
                 style={{ backgroundColor: isSelected ? "aqua" : "white" }}
-                onClick={handleClick}
               >
                 1A
               </div>
               <div
                 className="seat"
                 style={{ backgroundColor: isSelected ? "aqua" : "white" }}
-                onClick={handleClick}
               >
                 1B
               </div>
@@ -84,24 +96,43 @@ function DisplaySeats() {
             <div className="seat">17E</div>
           </div>
         </div>
-        <div className="after"></div>
-      </div>
-      <div>
-        {/* {users ? (
-          <div>
-            <div id="item-1" key={users[0].id}>
-              {users[0].title}
-            </div>
-            <div id="item-2" key={users[1].id}>
-              {users[1].title}
-            </div>
-            <div id="item-3" key={users[2].id}>
-              {users[2].title}
-            </div>
+        <div className="after">
+          <div
+            className="test1"
+            //onClick={getId}
+            //   onClick={() => getArrId()}
+            onClick={handleClick}
+          >
+            <input
+              //readOnly={true}
+              disabled
+              className="input"
+              onClick={handleClick}
+              type="text"
+              id="1"
+              value={waited[0]}
+            />
           </div>
-        ) : (
-          <div>Loading...</div>
-        )} */}
+          <div
+            className="test2"
+            //onClick={() => getArrId()}
+            onClick={handleClick} //onClick={getId}
+          >
+            <input
+              //readOnly={true}
+              disabled
+              className="input"
+              onClick={handleClick}
+              type="text"
+              id="1"
+              value={waited[1]}
+            />
+          </div>
+        </div>
+
+        {values.map((item, i) => (
+          <h2 key={i}>{item}</h2>
+        ))}
       </div>
     </>
   );
