@@ -38,6 +38,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -46,6 +48,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -54,6 +58,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -62,6 +68,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -70,6 +78,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -78,6 +88,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -86,6 +98,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -94,6 +108,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
     {
         name: 'Planet Coach',
@@ -102,6 +118,8 @@ const cars =[
         from: 'Nairobi',
         to: 'Garissa',
         price: 1500,
+        depature: '11:10 AM',
+        arrival: '8:00 PM',
     },
 
 ]
