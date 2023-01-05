@@ -18,33 +18,33 @@ console.log(formData)
         <form className='formsearch '>
 
             <div className='search '>
-                
-               <label>From</label>
-                <select class="" aria-label=".form-select-lg example">
-        <option selected>Select </option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
-            </div>
-
-            <div className='search'>
+                <div className='flex w-full space-x-5 items-center justify-between'>
+               <label>From </label>
+               <VscArrowSwap/>
                 <label>To</label>
-                <select class="" aria-label=".form-select-lg example" label="Select">
-        <option selected>Select</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+               </div>
+                <select class="" aria-label=".form-select-lg example" name='route' onChange={handleChange} >
+        <option selected>Select route: </option>
+        <option value="1">Nairobi - Garissa</option>
+        <option value="2">Kisumu - Nairobi</option>
+        <option value="3">Eldoret - Isiolo</option>
     </select>
             </div>
-
             <div className='search'>
                 <label>Depart</label>
-                <input type="date" name="to" value=""  placeholder='current date'/>
+                <input 
+                type="date" 
+                name="departure" 
+                value={formData.departure}  
+                onChange={handleChange}/>
             </div>
             <div className='search'>
                 <label>Return</label>
-                <input type="date" name="to" value=""  placeholder='current date'/>
+                <input 
+                type="date" 
+                name="arrival" 
+                value={formData.arrival}  
+                onChange={handleChange}/>
             </div>
             <button type="submit" className='h-full button'>Search</button>
         </form>
