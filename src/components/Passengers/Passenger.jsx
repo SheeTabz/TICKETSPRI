@@ -44,6 +44,7 @@ export default function Services() {
 
                   <div className="input-group">
                     <label htmlFor="">Gender</label>
+
                     <input
                       type="text"
                       id="gender"
@@ -80,8 +81,9 @@ export default function Services() {
                     <label htmlFor="">ID type</label>
                     <input
                       type="text"
-                      id="first_name"
+                      id="id_type"
                       className="input_field"
+                      placeholder="passport/student/N id"
                     />
                   </div>
                 </div>
@@ -92,6 +94,8 @@ export default function Services() {
                       onChange={(e) => setAge(e.target.value)}
                       value={age}
                       required
+                      min="7"
+                      max="92"
                       type="number"
                       id="age"
                       className="input_field"
@@ -105,6 +109,8 @@ export default function Services() {
                       id="phone"
                       onChange={(e) => setPhone(e.target.value)}
                       value={phone}
+                      maxLength={10}
+                      minLength={10}
                       required
                       placeholder="07XXX"
                       className="input_field"
@@ -118,7 +124,7 @@ export default function Services() {
                       id="identity"
                       onChange={(e) => setIdentity(e.target.value)}
                       value={identity}
-                      required
+                      maxLength={9}
                       className="input_field"
                     />
                   </div>
@@ -197,10 +203,10 @@ export default function Services() {
               </thead>
               <tbody>
                 <tr>
-                  <td>7c</td>
+                  <td>{}</td>
                   <td>{age}</td>
                   <td>{gender}</td>
-                  <td>KES 1,200</td>
+                  <td>KES {2888}</td>
                 </tr>
                 {/* <tr>
                   <th scope="row">2</th>
