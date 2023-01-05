@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import {VscArrowSwap} from 'react-icons/vsc'
 
 function SearchLoc() {
     const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ console.log(formData)
                 <div className='flex w-full space-x-5 items-center justify-between'>
                <label>From </label>
                <VscArrowSwap/>
-                <label>To</label>
+          <label>To</label>
                </div>
                 <select class="" aria-label=".form-select-lg example" name='route' onChange={handleChange} >
         <option selected>Select route: </option>
