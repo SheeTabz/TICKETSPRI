@@ -8,7 +8,9 @@ export default function Services() {
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [identity, setIdentity] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [payeename, setPayeeName] = useState("");
+  const [payeephone, setPayeePhone] = useState("");
+
   return (
     <div>
       <div className="container">
@@ -93,6 +95,7 @@ export default function Services() {
                       onChange={(e) => setAge(e.target.value)}
                       value={age}
                       required
+                      maxLength={2}
                       min="7"
                       max="92"
                       type="number"
@@ -148,7 +151,14 @@ export default function Services() {
               <div className="col-md-8">
                 <div className="input-group-2">
                   <label htmlFor="">Payee Name</label>
-                  <input type="text" id="payee_name" className="input_field" />
+                  <input
+                    type="text"
+                    onChange={(e) => setPayeeName(e.target.value)}
+                    value={payeename}
+                    required
+                    id="payee_name"
+                    className="input_field"
+                  />
                 </div>
               </div>
               <div className="col-md-8">
@@ -156,7 +166,13 @@ export default function Services() {
                   <label htmlFor="">Mobile No</label>
                   <input
                     type="number"
-                    id="mobile_name"
+                    id="payee_phone"
+                    onChange={(e) => setPayeePhone(e.target.value)}
+                    value={payeephone}
+                    maxLength={10}
+                    minLength={10}
+                    required
+                    placeholder="07XXX"
                     className="input_field"
                   />
                 </div>
