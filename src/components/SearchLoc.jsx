@@ -2,6 +2,16 @@ import React from 'react'
 
 
 function SearchLoc() {
+    const [formData, setFormData] = useState({
+        route: '',
+        departure: '',
+        arrival: ''
+    })
+    
+    function handleChange(e){
+        setFormData({...formData, [e.target.name]: e.target.value})
+    }
+console.log(formData)
   return (
     <div className='mt-[150px] flex flex-col h-full items-center space-y-8'>
         <h1 className='text-white text-6xl text-'>Where will you go next ?</h1>
