@@ -10,12 +10,35 @@ export default function Services() {
   const [identity, setIdentity] = useState("");
   const [payeename, setPayeeName] = useState("");
   const [payeephone, setPayeePhone] = useState("");
+  const [mail, setMail] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    fetch("/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstname,
+        gender,
+        age,
+        lastname,
+        phone,
+        identity,
+        payeename,
+        payeephone,
+        mail,
+      }),
+    }).then();
+  }
 
   return (
     <div>
       <div className="container">
         <div className="row">
-          <form className="col-md-6">
+          <form onSubmit={handleSubmit} method="post" className="col-md-6">
             <div className="form-pannels">
               <p>Enter Passenger Details</p>
               <p>You have selected 1 seat 7C</p>
@@ -180,7 +203,15 @@ export default function Services() {
               <div className="col-md-8">
                 <div className="input-group-2">
                   <label htmlFor="">Email</label>
-                  <input type="email" id="mail_name" className="input_field" />
+                  <input
+                    type="mail"
+                    id="mail_name"
+                    onChange={(e) => setMail(e.target.value)}
+                    value={mail}
+                    required
+                    placeholder="123@abc.com"
+                    className="input_field"
+                  />
                 </div>
               </div>
             </div>
