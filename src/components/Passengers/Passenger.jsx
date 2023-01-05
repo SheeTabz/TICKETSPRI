@@ -8,7 +8,6 @@ export default function Services() {
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [identity, setIdentity] = useState("");
-
   const [errors, setErrors] = useState([]);
   return (
     <div>
@@ -203,7 +202,7 @@ export default function Services() {
               </thead>
               <tbody>
                 <tr>
-                  <td>{}</td>
+                  <td>{7}</td>
                   <td>{age}</td>
                   <td>{gender}</td>
                   <td>KES {2888}</td>
