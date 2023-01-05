@@ -5,8 +5,10 @@ export default function Services() {
   const [firstname, setFirstName] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
-  const [password, setPassword] = useState("");
-  const [password_confirmation, setConfirmPassword] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [identity, setIdentity] = useState("");
+
   const [errors, setErrors] = useState([]);
   return (
     <div>
@@ -57,7 +59,10 @@ export default function Services() {
                     <label htmlFor="">Last Name</label>
                     <input
                       type="text"
-                      id="first_name"
+                      onChange={(e) => setLastName(e.target.value)}
+                      value={lastname}
+                      id="last_name"
+                      required
                       className="input_field"
                     />
                   </div>
@@ -97,7 +102,11 @@ export default function Services() {
                     <label htmlFor="">Mobile Number</label>
                     <input
                       type="number"
-                      id="first_name"
+                      id="phone"
+                      onChange={(e) => setPhone(e.target.value)}
+                      value={phone}
+                      required
+                      placeholder="07XXX"
                       className="input_field"
                     />
                   </div>
@@ -106,7 +115,10 @@ export default function Services() {
                     <label htmlFor="">ID No</label>
                     <input
                       type="number"
-                      id="first_name"
+                      id="identity"
+                      onChange={(e) => setIdentity(e.target.value)}
+                      value={identity}
+                      required
                       className="input_field"
                     />
                   </div>
