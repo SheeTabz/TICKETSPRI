@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Passengers/Passenger.css";
 
 export default function Services() {
+  const [firstname, setFirstName] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   return (
     <div>
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
+          <form className="col-md-6">
             <div className="form-pannels">
               <p>Enter Passenger Details</p>
               <p>You have selected 1 seat 7C</p>
@@ -16,6 +22,9 @@ export default function Services() {
                   <div className="input-group">
                     <label htmlFor="">First Name</label>
                     <input
+                      onChange={(e) => setFirstName(e.target.value)}
+                      value={firstname}
+                      required
                       type="text"
                       id="first_name"
                       className="input_field"
@@ -26,7 +35,7 @@ export default function Services() {
                     <label htmlFor="">Nationality</label>
                     <input
                       type="text"
-                      id="first_name"
+                      id="nationality"
                       className="input_field"
                     />
                   </div>
@@ -35,7 +44,10 @@ export default function Services() {
                     <label htmlFor="">Gender</label>
                     <input
                       type="text"
-                      id="first_name"
+                      id="gender"
+                      onChange={(e) => setGender(e.target.value)}
+                      value={gender}
+                      required
                       className="input_field"
                     />
                   </div>
@@ -53,6 +65,7 @@ export default function Services() {
                   <div className="input-group">
                     <label htmlFor="">Code</label>
                     <input
+                      placeholder="+254"
                       type="text"
                       id="first_name"
                       className="input_field"
@@ -71,8 +84,11 @@ export default function Services() {
                   <div className="input-group">
                     <label htmlFor="">Age</label>
                     <input
+                      onChange={(e) => setAge(e.target.value)}
+                      value={age}
+                      required
                       type="number"
-                      id="first_name"
+                      id="age"
                       className="input_field"
                     />
                   </div>
@@ -153,7 +169,7 @@ export default function Services() {
                 PROCEED TO BOOK
               </button>
             </div>
-          </div>
+          </form>
 
           <div className="col-md-6" id="table">
             <p>Passenger Details</p>
@@ -170,8 +186,8 @@ export default function Services() {
               <tbody>
                 <tr>
                   <td>7c</td>
-                  <td>34</td>
-                  <td>Male</td>
+                  <td>{age}</td>
+                  <td>{gender}</td>
                   <td>KES 1,200</td>
                 </tr>
                 {/* <tr>
