@@ -20,7 +20,7 @@
         @apply flex space-x-2 justify-center items-center text-base
     }
     form>.search{
-        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md
+        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md justify-center 
     }
     .search>input{
         @apply bg-transparent
