@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 // import { useHistory } from "react-router-dom";
 import { FaUser, FaEnvelope, FaMap } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ function Profile({ user }) {
                   <div className="d-flex">
                     <p className="small ">
                       {" "}
-                      <strong>Role</strong> <span>Trainee</span>{" "}
+                      <strong>Role</strong> <span>Sacco</span>{" "}
                     </p>
                   </div>
                   <div className="d-flex">
