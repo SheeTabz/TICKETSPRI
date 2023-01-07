@@ -52,3 +52,14 @@ p span {
   font-style: normal;
   color: green;
 }
+.Paymentbtn {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-weight: bolder;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
