@@ -67,16 +67,3 @@ p span {
   color: green;
   font-weight: bolder;
 }
-/* @keyframes move {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-.bus {
-  position: relative;
-  animation: move 10s linear infinite;
-} */
