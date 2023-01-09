@@ -13,12 +13,12 @@ function SearchLoc() {
     }
 console.log(formData)
   return (
-    <div className='mt-[150px] flex flex-col h-full items-center space-y-8'>
-        <h1 className='text-white text-6xl text-'>Where will you go next ?</h1>
+    <div className='mt-[150px] flex flex-col h-full items-center space-y-8 '>
+        <h1 className='text-white md:text-6xl text-4xl'>Where will you go next ?</h1>
         <form className='formsearch '>
 
             <div className='search '>
-                <div className='flex w-full space-x-5 items-center justify-between'>
+                <div className='flex md:w-full  w-fit md:space-x-5 space-x-2 items-center justify-between'>
                <label>From </label>
                <VscArrowSwap/>
           <label>To</label>
