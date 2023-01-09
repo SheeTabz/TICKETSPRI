@@ -1,3 +1,27 @@
+.seat label {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.seat label:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0px 2px green;
+}
+.seat input[type="checkbox"] {
+  position: absolute;
+}
+.seat input[type="checkbox"]:checked + label {
+  background: lime;
+}
+
+.contain {
+  margin: auto;
+  margin-top: 5%;
+}
 .parent {
   width: 200px;
 }
@@ -71,7 +95,7 @@
   width: 200px;
   border: solid 2px lime;
 }
-.input{
-background-color: pink;
-width: 10%;
+.input {
+  background-color: pink;
+  width: 10%;
 }
