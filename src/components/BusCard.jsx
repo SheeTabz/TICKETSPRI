@@ -10,7 +10,7 @@ function BusCard() {
   };
   return (
     <>
-      <div className=" flex flex-row justify-around shadow-lg  width">
+      <div className=" flex flex-row justify-between shadow-lg container m-auto">
         {/* div holding image */}
         <div className=" flex flex-col justify-evenly  ">
           <img
