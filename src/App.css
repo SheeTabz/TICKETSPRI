@@ -20,7 +20,7 @@
         @apply flex space-x-2 justify-center items-center text-base
     }
     form>.search{
-        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md
+        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md justify-center 
     }
     .search>input{
         @apply bg-transparent
@@ -54,5 +54,10 @@
     .dashboard>li{
         @apply flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-white hover:bg-gray-100 hover:bg-gray-200
     }
+    
+    .car-det>h1{
+        @apply font-medium text-lg
+    }
   
   }
+
