@@ -6,13 +6,13 @@ import SaccoLogiPage from './pages/SaccoLogiPage';
 import CarListPage from './pages/CarListPage';
 import EditForm from './components/EditForm';
 import LandingPage from './pages/LandingPage';
-
 import LogInPage from './pages/LogInPage';
 import BusPage from './pages/BusesPage';
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+// import Payment from "./components/Passengers/Payment";
 function App() {
-
   return (
 
     <div className="App">
@@ -22,6 +22,7 @@ function App() {
   {/* <LogInPage/> */}
   <BusPage/>
     </div>
+
   );
 }
 
