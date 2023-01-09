@@ -7,18 +7,21 @@ import CarListPage from './pages/CarListPage';
 import EditForm from './components/EditForm';
 import LandingPage from './pages/LandingPage';
 
+import LogInPage from './pages/LogInPage';
+import BusPage from './pages/BusesPage';
+
 
 function App() {
 
   return (
-   <div>
-{/* <SaccoLogin/> */}
-{/* <SaccoSignup/> */}
-{/* <SaccoLogiPage/> */}
-{/* <CarListPage/> */}
-{/* <EditForm/> */}
-<LandingPage/>
-</div>
+
+    <div className="App">
+  {/* <NavBar1/> */}
+  {/* <NavBar2/> */}
+  {/* <LandingPage/> */}
+  {/* <LogInPage/> */}
+  <BusPage/>
+    </div>
   );
 }
 
