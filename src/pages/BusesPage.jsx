@@ -6,9 +6,6 @@ function BusPages() {
     <>
       <NavBar2 />
       <BusCard />
-      <BusCard />
-      <BusCard />
-      
     </>
   );
 }
