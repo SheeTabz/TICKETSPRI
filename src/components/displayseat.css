@@ -34,10 +34,9 @@
   line-height: 25px;
 }
 .after {
-  width: 45%;
-  min-height: 50vh;
+  width: auto;
+  height: auto;
   border: 2px solid pink;
-  width: 200px;
 }
 @media only screen and (max-width: 450px) {
   * {
@@ -85,17 +84,23 @@
 }
 
 .test1 {
-  height: 200px;
-  width: 200px;
+  height: auto;
+  width: auto;
   border: solid 2px red;
 }
 
 .test2 {
-  height: 200px;
-  width: 200px;
+  height: auto;
+  width: auto;
   border: solid 2px lime;
 }
 .input {
   background-color: pink;
   width: 10%;
+}
+.isit{
+  contain: content;
+  text-align: center;
+  font-size: 14px;
+  display: none;
 }

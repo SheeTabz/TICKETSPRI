@@ -7,10 +7,8 @@ function DisplaySeats() {
   const [waited, setWaited] = useState([]);
   const [price, setPrice] = useState([]);
   const [changed, setChanged] = useState(0);
-  const [color, setColor] = useState("white");
-
-  const [selected, setSelected] = useState(null);
-
+  const [checked, setChecked] = useState(false);
+  const [boolean, setBoolean] = useState(false);
   //********-----------functions-----------****************
   // const handleClick = (inputName) => {
   //   setValues((prevValues) => [...prevValues, INPUT_VALUES[inputName]]);
@@ -20,35 +18,49 @@ function DisplaySeats() {
   //console.clear;
   // <<<<------------------fecth request----------------->>>>>>>>>
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/albums")
+    fetch("songs")
       .then((response) => response.json())
       .then((data) => setUsers(data));
   }, [changed]);
+
   async function usedData() {
     const user = await users;
     setWaited(user.map((item) => item.id));
-    setPrice(user.map((item) => item.title));
+    setPrice(user.map((item) => item.name));
+    setBoolean(user.map((item) => item.selected));
   }
+  if (boolean === true) {
+    setChecked(true);
+  }
+
   usedData();
 
   const handleClick = (index) => {
-    // setColor(color === "green" ? "white" : "white");
-    console.log(index);
-    // setSelected(index);
-    // value = setValue(e.target.value);
-    //console.log(value);
-    //   fetch("/api/endpoint", {
-    //   method: "POST",
-    //   body: JSON.stringify({ data: value }),
-    //   headers: { "Content-Type": "application/json" },
+    //console.log(index + 1);
+    // fetch(`https://jsonplaceholder.typicode.com/albums/${index + 1}`, {
+    //   method: "GET",
     // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // do something with the response data
-    //     console.log(data);
-    //    setValue("");
-
-    //   });
+    fetch(`/songs/${index + 1}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        selected: true,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        fetch("musics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      });
   };
 
   return (
@@ -66,12 +78,33 @@ function DisplaySeats() {
           </div>
           <div className="rows flex space-x-16  ">
             <div className="left row grid grid-cols-2 gap-2">
-              <div className="seat">
-                <input type="checkbox" className="hidden" id="1" />
-                <label for="1">{waited[0]}</label>
+              <div
+                className="seat"
+                style={{ backgroundColor: boolean[0] ? "lightcyan" : "white" }}
+              >
+                <input
+                  type="checkbox"
+                  className="hidden"
+                  id="1"
+                  disabled={boolean[0]}
+
+                  //checked={checked}
+                />
+                <label for="1">
+                  {waited[0]} <div className="isit">{`S:${boolean[0]}`}</div>
+                </label>
               </div>
-              <div className="seat">
-                <input type="checkbox" className="hidden" id="2" />
+              <div
+                className="seat"
+                style={{ backgroundColor: boolean[1] ? "lightcyan" : "white" }}
+              >
+                <input
+                  type="checkbox"
+                  className="hidden"
+                  id="2"
+                  //  disabled={checked}
+                  disabled={boolean[1]}
+                />
                 <label for="2">{waited[1]}</label>
               </div>
 
@@ -232,19 +265,11 @@ function DisplaySeats() {
         </div>
 
         <div className="after">
-          <div
-            className="test1"
-            onClick={() => handleClick(0)}
-            style={{ backgroundColor: selected === 0 ? "red" : "white" }}
-          >
+          <div className="test1" onClick={() => handleClick(0)}>
             <input disabled className="input" type="text" value={waited[0]} />
             {price[0]}
           </div>
-          <div
-            className="test2"
-            onClick={() => handleClick(1)}
-            style={{ backgroundColor: selected === 0 ? "red" : "white" }}
-          >
+          <div className="test2" onClick={() => handleClick(1)}>
             <input disabled className="input" type="text" value={waited[1]} />
             {price[1]}
           </div>
