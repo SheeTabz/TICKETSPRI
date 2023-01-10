@@ -16,12 +16,12 @@ const data = [
 ]
 
   return (
-    <div className='bg-gray-200 mt-[150px] h-[20vh] '>
+    <div className='bg-gray-200 md:mt-[150px] h-[20vh]  '>
         <div className='h-full flex flex-col justify-center items-center container m-auto space-y-5'>
             <div className='border-b-2 border-b-gray-400 w-full' >
             
             </div>
-            <div className='w-full flex justify-between'>
+            <div className='w-full flex md:flex-row md:justify-between flex-col justify-center items-center'>
             <h1 className='font-bold text-3xl text-center'>TICKETSPRI</h1>
             <ul className='flex space-x-3 text-gray-400'>
                 {data.map((list, index) => {

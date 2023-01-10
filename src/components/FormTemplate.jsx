@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Nav3 from './Nav3'
 
 function FormTemplate({children, login, signup}) {
 // const [active, setActive] = useState('')
@@ -13,6 +14,7 @@ function FormTemplate({children, login, signup}) {
 
   return (
     <div className='background-full'>
+        <Nav3/>
         <div className='h-screen flex flex-col justify-center items-center space-y-3'>
         <h1 className='font-bold text-3xl text-white'>TICKETSPRI</h1>
         <div className='bg-white  w-[400px] pt-5 space-y-4 rounded-md'>
