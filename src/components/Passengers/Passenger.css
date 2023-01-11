@@ -1,6 +1,6 @@
-body {
+/* body {
   background-color: #ccc;
-}
+} */
 .form-pannels {
   background-color: white;
   padding: 15px;
@@ -66,4 +66,12 @@ p span {
 .mpesa {
   color: green;
   font-weight: bolder;
+}
+.printbtn {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 15px;
 }
