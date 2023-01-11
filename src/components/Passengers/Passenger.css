@@ -67,3 +67,11 @@ p span {
   color: green;
   font-weight: bolder;
 }
+.printbtn {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 15px;
+}

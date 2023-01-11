@@ -5,6 +5,8 @@
   "proxy": "http://localhost:3000",
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
+    "@react-pdf/renderer": "^3.0.2",
+    "@react-spring/web": "^9.6.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,6 +19,7 @@
     "react-icons": "^4.7.1",
     "react-scripts": "5.0.1",
     "react-seatmap": "^0.1.2",
+    "react-to-print": "^2.14.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
