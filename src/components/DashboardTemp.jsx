@@ -32,7 +32,7 @@ function DashboardTemp({children}) {
           </ul>
        </div>
     </aside>
-    <div className='border-2 border-gray-200 flex-1  h-screen rounded'>
+    <div className='border-2 border-gray-200 flex-1 h-screen rounded'>
         {children}
     </div>
     
