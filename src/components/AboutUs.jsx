@@ -2,7 +2,7 @@ import React from 'react'
 
 function AboutUs() {
   return (
-    <div className='xl:mx-[200px] md:mx-[95px] md:mt-[150px] mt-[60px] flex lg:flex-row lg:space-x-12 justify-center items-center flex-col '>
+    <div className='xl:container xl:mx-auto md:mx-[95px] md:mt-[150px] mt-[60px] flex lg:flex-row lg:space-x-12 justify-center items-center flex-col mx-2'>
     <div className='max-w-2xl space-y-3'>
         <h1 className='font-bold text-3xl'>ABOUT US</h1>
         <p className=''>In omni memoria patriae religionis sunt diri undead historiarum. Golums, zombies et fascinati. Maleficia! Vel a modern perhsaps morbi. A terrenti contagium. Forsitan illud Apocalypsi, vel malum poenae horrifying fecimus.</p><br/>

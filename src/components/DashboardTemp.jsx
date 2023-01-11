@@ -6,10 +6,10 @@ function DashboardTemp({children}) {
   return (
     <>
     <RegisteredNavBar/>
-    <div className='flex py-8 space-x-8  mx-[100px]'>
-    <aside class="w-72 " aria-label="Sidebar">
-       <div class=" py-4 px-3 bg-gray-100 rounded ">
-          <ul class="space-y-2 dashboard">
+    <div className='flex lg:flex-row lg:py-8 lg:space-x-8  lg:mx-[100px] flex-col md:mx-[20px] mx-2'>
+    <aside className="lg:w-72 w-full" aria-label="Sidebar" >
+       <div class=" py-4 px-3 lg:bg-gray-100 rounded ">
+          <ul class="lg:space-y-2 dashboard flex lg:flex-col flex-row ">
              <li className="">
                  <span class="ml-3">Account</span>
             
@@ -32,7 +32,7 @@ function DashboardTemp({children}) {
           </ul>
        </div>
     </aside>
-    <div className='border-2 border-gray-200 flex-1 h-screen rounded'>
+    <div className='border-2 border-gray-200 lg:flex-1 h-screen rounded '>
         {children}
     </div>
     

@@ -15,8 +15,8 @@ function Card({car}){
     }
     return (
         <>
-        <div className='w-full flex justify-between px-4 py-5  items-center shadow-md'>
-        <div className='car-det'>
+        <div className='md:w-full flex md:flex-row flex-col justify-between px-4 py-5  md:items-center shadow-md'>
+        <div className='car-det '>
             <h1>{car.name}</h1>
             <p>{car.desc}</p>
         </div>
@@ -24,7 +24,7 @@ function Card({car}){
         <h1>{car.no}</h1>
             <p>Seats left</p> 
         </div>
-        <div className='flex flex-col'>
+        <div className='flex md:flex-col flex-row justify-between'>
         <div className='car-det'>
         <h1>{car.from}</h1>
         </div>
@@ -32,7 +32,7 @@ function Card({car}){
         <p className='text-cyan-500'>{car.depature}</p>
         </div>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex md:flex-col flex-row justify-between'>
         <div className='car-det'>
         <h1>{car.to}</h1>
         </div>
