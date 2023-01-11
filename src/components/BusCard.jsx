@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import '../bus.css';
+import "../bus.css";
 
 function BusCard() {
   const [visible, setVisible] = useState(false);
@@ -18,30 +18,30 @@ function BusCard() {
             alt="bus"
             className="object-contain   max-h-32 p-4"
           />
-          <h5 className="text-center">b</h5>
+          <h5 className="text-center">Bus Travel</h5>
         </div>
 
         {/* div holding pickup time */}
 
         <div className=" flex flex-col justify-evenly">
-          <h5>c</h5>
-          <h5>d</h5>
+          <h5>8:50 AM</h5>
+          <h5 className="text-cyan-500">Pick Up</h5>
         </div>
 
         {/* div holding drop off time */}
         <div className=" flex flex-col justify-evenly">
-          <h5>e</h5>
-          <h5>f</h5>
+          <h5>3:10PM</h5>
+          <h5 className="text-cyan-500">Drop off</h5>
         </div>
 
         {/* div holding number of seatz */}
         <div className=" flex flex-col justify-evenly">
-          <h5>g</h5>
-          <h5>h</h5>
+          <h5>49</h5>
+          <h5 className="text-cyan-500">Seats left</h5>
         </div>
         {/* div holding price and button */}
         <div className=" flex flex-col justify-evenly">
-          <h5>sh.</h5>
+          <h5>sh.1000</h5>
           <button
             onClick={handleClick}
             className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 "
