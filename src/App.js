@@ -11,18 +11,20 @@ import BusPage from './pages/BusesPage';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import Payment from "./components/Passengers/Payment";
 function App() {
   return (
-
+<BrowserRouter>
     <div className="App">
-  {/* <NavBar1/> */}
-  {/* <NavBar2/> */}
-  {/* <LandingPage/> */}
-  {/* <LogInPage/> */}
-  <BusPage/>
+ <Routes>
+  <Route path="/"   element={ <LandingPage/>}  />
+ <Route path="/login" element={<LogInPage/>}/>
+  
+  {/* <BusPage/> */}
+  </Routes>
     </div>
-
+    </BrowserRouter>
   );
 }
 
