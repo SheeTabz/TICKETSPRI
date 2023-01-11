@@ -1,11 +1,20 @@
-import React from "react";
+import { React } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import "../Passengers/Passenger.css";
+import Footer from "../Footer";
+import RegisteredNavBar from "../RegisteredNavBar";
 
 function ResponsivePage() {
   const componentRef = useRef();
+  const [receipt, setReceipt] = useState([]);
+  useEffect(() => {
+    fetch("/receipt")
+      .then((r) => r.json())
+      .then(setReceipt);
+  }, []);
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "receipt",
@@ -13,6 +22,7 @@ function ResponsivePage() {
   });
   return (
     <>
+      <RegisteredNavBar />
       <button fluid className="printbtn" onClick={handlePrint}>
         Print Receipt
       </button>
@@ -40,15 +50,15 @@ function ResponsivePage() {
                 <tr>
                   <th scope="col">
                     Ticket NO. <br />
-                    {"QRS123422"}
+                    {receipt.qr}
                   </th>
                   <th scope="col">
                     Seat NO. <br />
-                    {25}
+                    {receipt.seat}
                   </th>
                   <th scope="col">
                     Route: <br />
-                    {"Nairobi - Pusia"}
+                    {receipt.route}
                   </th>
                 </tr>
               </thead>
@@ -58,11 +68,11 @@ function ResponsivePage() {
                   <td colspan="2">
                     {" "}
                     Name: <br />
-                    {"Nanjala Washington Nanjalaalla"}
+                    {receipt.customer}
                   </td>
                   <td>
                     BUS: <br />
-                    {" Mash-Cool Executive"}
+                    {receipt.busType}
                   </td>
                   {/* <td>@mdo</td> */}
                 </tr>
@@ -70,15 +80,15 @@ function ResponsivePage() {
                   {/* <th scope="row">2</th> */}
                   <td>
                     FROM: <br />
-                    {"Nairobi"}
+                    {receipt.departure}
                   </td>
                   <td>
                     TO: <br />
-                    {"Kisumu"}
+                    {receipt.destination}
                   </td>
                   <td>
                     ID: <br />
-                    {"40293087"}
+                    {receipt.idNo}
                   </td>
                 </tr>
 
@@ -86,16 +96,16 @@ function ResponsivePage() {
                   {/* <th scope="row">2</th> */}
                   <td>
                     Booking Date: <br />
-                    {"12/3/2025"}
+                    {receipt.bookindate}
                   </td>
                   <td>
                     Travel Date <br />
-                    {"12/3/2025"}
+                    {receipt.travelDate}
                   </td>
                   <td>
                     Amount Paid <br />
                     KES
-                    {"1,200/="}
+                    {receipt.amount}
                   </td>
                 </tr>
                 <tr>
@@ -107,7 +117,7 @@ function ResponsivePage() {
                   </td>
                   <td>
                     Phone: <br />
-                    {"072994544"}{" "}
+                    {receipt.phone}
                   </td>
                 </tr>
 
@@ -127,6 +137,7 @@ function ResponsivePage() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 }
