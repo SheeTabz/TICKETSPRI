@@ -14,7 +14,7 @@ function Nav3() {
         return <Link to={data.path} className="text-white font-semibold no-underline"><li key={index}>{data.name}</li></Link> 
         })}
         </ul>
-        <div className='flex flex-row space-x-5 hidden md:block'>
+        <div className='flex flex-row space-x-5  md:block'>
              {/* <TransButton/>  */}
              <Link to="/login"><WhiteButton/></Link>
         </div>
