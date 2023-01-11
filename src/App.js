@@ -10,12 +10,12 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 // import PDFFile from "./components/Passengers/PDFFile";
 
-// import Confirmation from "./components/Passengers/Confirmation";
+import Confirmation from "./components/Passengers/Confirmation";
 function App() {
   return (
     <>
       {/* <Passenger /> */}
-      {/* <Confirmation /> */}
+      <Confirmation />
     </>
   );
 }
