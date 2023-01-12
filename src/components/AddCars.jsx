@@ -38,9 +38,9 @@ function AddCars() {
   return (
     <>
       <DashboardTemp>
-        <div className="flex flex-col border-solid border-2 border-gray-200 rounded h-screen   ">
-          <div className="flex justify-between  border-b-2 border-gray-200 p-5 text-center">
-            <h1 className=" text-center text-xl">Add Cars</h1>
+        <div className="flex flex-col  h-screen   ">
+          <div className="flex justify-between  border-b-2 border-gray-200 p-4 text-center">
+            <h1 className=" text-3xl font-medium">Add Cars</h1>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
               Save
             </button>
