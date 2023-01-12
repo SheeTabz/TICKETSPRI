@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background{
+    background-image: url('/public/assets/images/index-topbg.jpg');
+    background-repeat: no-repeat;
+    height: 80vh;
+    background-size: cover;
+}
+.background-full{
+    background-image: url('/public/assets/images/index-topbg.jpg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+@layer components{
+    .formsearch{
+        @apply flex space-x-2 justify-center items-center md:text-base 
+    }
+    form>.search{
+        @apply flex flex-col bg-white lg:w-72 md:w-48 md:px-4 px-1 py-2 rounded-md justify-center w-24 md:text-base text-sm
+    }
+    .search>input{
+        @apply bg-transparent
+    }
+    .search>select{
+        @apply   
+        w-full
+       outline-none
+        text-gray-700
+        bg-white 
+        rounded
+        transition
+        ease-in-out
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+    }
+    .search{
+        @apply text-gray-500
+    }
+    .button{
+        @apply border-solid border-2 border-transparent rounded-md md:px-8  px-4 py-2 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold h-full
+    }
+    .submit{
+        @apply border-solid border-2 border-transparent rounded-b-md px-8 py-3 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold w-full  px-0
+    }
+    .form>input{
+        @apply border-2 border-gray-200 px-3 py-4 focus:outline-gray-200 px-5
+    }
+    .btn{
+        @apply text-xl text-cyan-500 selection:text-blue-600  focus:underline
+    }
+    .dashboard>li{
+        @apply flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-white hover:bg-gray-100 hover:bg-gray-200
+    }
+    
+    .car-det>h1{
+        @apply font-medium text-lg
+    }
+  
+  }
+

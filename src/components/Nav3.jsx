@@ -5,15 +5,15 @@ import WhiteButton from './WhiteButton'
 function Nav3() {
   return (
     <div className='h-[10vh] flex text-white font-semibold'>
-    <div className='flex items-center lg:container m-auto justify-between '>
-    <h1 className='font-bold text-3xl'>TICKETSPRI</h1>
-    <div className='flex items-center space-x-5 '>
-        <ul className='flex space-x-5 font-'>
+    <div className='flex items-center md:container md:flex-row md:m-auto justify-between flex-col w-full '>
+    <h1 className='font-bold lg:text-3xl text-2xl'>TICKETSPRI</h1>
+    <div className='flex items-center md:space-x-5  space-x-2 md:w-fit w-full '>
+        <ul className='flex md:space-x-5 md:w-fit  w-full justify-around space-x-2'>
         {nav1.map((data, index) => {
         return <li key={index}>{data.name}</li>
         })}
         </ul>
-        <div className='flex space-x-5'>
+        <div className='flex flex-row space-x-5 hidden md:block'>
             <TransButton/>
             <WhiteButton/>
         </div>
