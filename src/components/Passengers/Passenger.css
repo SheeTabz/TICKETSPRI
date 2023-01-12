@@ -1,6 +1,6 @@
-body {
+/* body {
   background-color: #ccc;
-}
+} */
 .form-pannels {
   background-color: white;
   padding: 15px;
@@ -15,7 +15,7 @@ body {
   margin-bottom: 15px;
 }
 .input-group label {
-  color: blue;
+  color:rgb(14 165 233);
 }
 .input-group .input_field {
   width: 100%;
@@ -34,26 +34,26 @@ body {
 }
 
 .input-group-2 label {
-  color: blue;
+  color:rgb(14 165 233);
 }
 .button {
-  background-color: blue;
+  background-color: rgb(14 165 233);
   color: white;
   padding: 10px;
   font-weight: bold;
   border-radius: 10px;
 }
-p {
+/* .form-pannels>p {
   font-weight: medium;
   font-style: italic;
-}
+} */
 p span {
   font-weight: bolder;
   font-style: normal;
   color: green;
 }
 .Paymentbtn {
-  background-color: blue;
+  background-color: rgb(14 165 233);
   color: white;
   padding: 10px;
   font-weight: bolder;
@@ -66,4 +66,12 @@ p span {
 .mpesa {
   color: green;
   font-weight: bolder;
+}
+.printbtn {
+  
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+ 
 }
