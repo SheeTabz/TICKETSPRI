@@ -1,6 +1,9 @@
 import { useState } from "react";
-import DashboardTemp from "./DashboardTemp";
 
+import DashboardTemp from "./DashboardTemp";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 } from "uuid";
 function AddCars() {
   const [cars, setCars] = useState("");
   const [desc, setDesc] = useState("");
@@ -11,17 +14,58 @@ function AddCars() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [price, setPrice] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState("");
+  const imagesListRef = ref(storage, "images/");
 
   // handle form submit
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls(url);
+      });
+    });
+  };
 
-  const formData = { cars, desc, plate, seat, pickup, drop, from, to, price };
+  const formData = {
+    cars,
+    desc,
+    plate,
+    seat,
+    pickup,
+    drop,
+    from,
+    to,
+    price,
+    imageUrls,
+  };
 
   function handleSubmit(e) {
-    console.log(formData);
     e.preventDefault();
+    uploadFile();
     // fetch("/addcars", {
     //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // }).then((r) => {
+    //   if (r.ok) {
+    //     navigate("/home");
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
+    console.log(formData);
+  }
+
+  function handlePatch(e) {
+    e.preventDefault();
+    uploadFile();
+    // fetch("/addcars", {
+    //   method: "PATCH",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
@@ -41,7 +85,10 @@ function AddCars() {
         <div className="flex flex-col border-solid border-2 border-gray-200 rounded h-screen   ">
           <div className="flex justify-between  border-b-2 border-gray-200 p-5 text-center">
             <h1 className=" text-center text-xl">Add Cars</h1>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
+            <button
+              onClick={handlePatch}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+            >
               Save
             </button>
           </div>
@@ -155,7 +202,7 @@ function AddCars() {
 
             {/* 3rd row */}
             <div class="flex flex-wrap -mx-3 mb-12 p-2">
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <label
                   class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-city"
@@ -170,7 +217,7 @@ function AddCars() {
                   onChange={(e) => setFrom(e.target.value)}
                 />
               </div>
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <label
                   class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-city"
@@ -186,7 +233,7 @@ function AddCars() {
                 />
               </div>
 
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <label
                   class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-zip"
@@ -199,6 +246,22 @@ function AddCars() {
                   type="number"
                   placeholder="Sh: 1,020"
                   onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Upload file
+                </label>
+                <input
+                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-city"
+                  type="file"
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
                 />
               </div>
             </div>
