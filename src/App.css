@@ -39,7 +39,7 @@
     .search{
         @apply text-gray-500
     }
-    .button{
+    .buton{
         @apply border-solid border-2 border-transparent rounded-md md:px-8  px-4 py-2 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold h-full
     }
     .submit{
@@ -48,8 +48,8 @@
     .form>input{
         @apply border-2 border-gray-200 px-3 py-4 focus:outline-gray-200 px-5
     }
-    .btn{
-        @apply text-xl text-cyan-500 selection:text-blue-600  focus:underline
+    .btn-log{
+        @apply text-xl text-sky-500 selection:text-sky-500  focus:underline
     }
     .dashboard>li{
         @apply flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-white hover:bg-gray-100 hover:bg-gray-200
