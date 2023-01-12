@@ -5,7 +5,7 @@ function RegisteredNavBar() {
   
 
  <div className='bg-gradient-to-r from-cyan-500 to-blue-600 h-[10vh]  text-white font-semibold flex '>
- <div className='w-full flex items-center lg:mx-[100px] justify-between md:mx-[20px] mx-2'>
+ <div className='w-full flex items-center lg:mx-[100px] justify-between md:mx-[20px] sm:mx-2'>
  <h1 className='font-bold md:text-3xl text-xl'>TICKETSPRI</h1>
  <div className='flex items-center space-x-5 '>
      <ul className='flex space-x-5 '>

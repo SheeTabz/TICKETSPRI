@@ -1,28 +1,35 @@
 import React from 'react'
 import {GrFormAdd} from 'react-icons/gr'
+import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import RegisteredNavBar from './RegisteredNavBar'
 function DashboardTemp({children}) {
   return (
     <>
     <RegisteredNavBar/>
-    <div className='flex lg:flex-row lg:py-8 lg:space-x-8  lg:mx-[100px] flex-col md:mx-[20px] mx-2'>
+    <div className='flex lg:flex-row lg:py-8 lg:space-x-8  lg:mx-[100px] flex-col md:mx-[20px] '>
     <aside className="lg:w-72 w-full" aria-label="Sidebar" >
        <div class=" py-4 px-3 lg:bg-gray-100 rounded ">
-          <ul class="lg:space-y-2 dashboard flex lg:flex-col flex-row ">
-             <li className="">
+          <ul class="lg:space-y-2 dashboard flex lg:flex-col sm:flex-row ">
+          <Link to="/saccoAccount" className="no-underline">
+             <li >
                  <span class="ml-3">Account</span>
             
              </li>
-             <li className="">
+             </Link>
+            
+             <Link to="/saccoBuses" className="no-underline"><li className="">
                  <span class="ml-3">Car List</span>
             
              </li>
+             </Link>
+             <Link to="/saccoNew" className="no-underline">
              <li className="justify-between">
                  <span class="ml-3">Add Car</span>
                  <GrFormAdd className='text-2xl'/>
             
              </li>
+             </Link>
              <li className="">
                  <span class="ml-3 text-red-500">Delete account</span>
                 

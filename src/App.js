@@ -17,6 +17,7 @@ import DisplaySeats from './components/displaySeat';
 import ResponsivePage from './components/Passengers/Confirmation';
 import Services from './components/Passengers/Passenger';
 import Account from './components/Passengers/Account';
+import AddCars from './components/AddCars';
 // import Payment from "./components/Passengers/Payment";
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
  <Route path="/confirmation" element={<ResponsivePage/>}/>
  <Route path="/passengerDetails" element={<Services/>}/>
  <Route path="/saccoAccount" element={<Account/>}/>
+ <Route path="/saccoBuses" element={<CarListPage/>}/>
+ <Route path="/saccoNew" element={<AddCars/>}/>
+ 
+ 
  
  
   {/* <BusPage/> */}
