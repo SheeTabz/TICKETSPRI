@@ -31,7 +31,8 @@ function ResponsivePage() {
         <Row>
           <Col xs={12} className="text-center" style={{ marginTop: "20px" }}>
             <Image
-              src="https://images.unsplash.com/photo-1635070636690-d887c1a77e7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              src={receipt.logoUrl}
+              alt="Bus logo should be here"
               fluid
               width="30%"
               // height="50%"
