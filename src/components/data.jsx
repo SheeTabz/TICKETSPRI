@@ -7,11 +7,15 @@ const nav1 = [
     },
     {
         name: 'Book Ticket',
-        path: '/tickets',
+        path: '/bookTicket',
     },
     {
         name: 'Manage Booking',
         path: '/manage',
+    },
+    {
+        name: 'Are you a sacco?',
+        path: '/saccolog',
     }
 ]
 const nav2 = [

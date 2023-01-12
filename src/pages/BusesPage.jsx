@@ -6,7 +6,7 @@ function BusPages() {
   return (
     <>
       <NavBar2 />
-      <div className="space-y-8">
+      <div className="space-y-24">
         <BusCard />
         <BusCard />
       </div>
