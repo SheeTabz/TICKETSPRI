@@ -38,15 +38,23 @@ function Account() {
   }
   return (
     <DashboardTemp>
-    <div style={{ paddingLeft: "7%", paddingTop: "4%" }}>
+    
+    <div className="flex justify-between  border-b-2 border-gray-200 p-4 text-center">
+            <h1 className=" text-3xl font-medium">Account</h1>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
+              Save
+            </button>
+          </div>
+          <div className="w-full p-5">
       {editing ? (
         <Container>
           <Row>
             <Col md={6}>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formBasicName">
-                  <Form.Label>Name</Form.Label>
+                <Form.Group controlId="formBasicName" >
+                  <Form.Label class="block uppercase tracking-wide text-gray-700  font-bold mb-2 ">Name</Form.Label>
                   <Form.Control
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500 "
                     required
                     type="text"
                     placeholder="Enter name"
@@ -55,8 +63,9 @@ function Account() {
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label class="block uppercase tracking-wide text-gray-700  font-bold mb-2 ">Email address</Form.Label>
                   <Form.Control
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500 "
                     required
                     type="email"
                     placeholder="Enter email"
@@ -65,8 +74,9 @@ function Account() {
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicDescription">
-                  <Form.Label>Description</Form.Label>
+                  <Form.Label class="block uppercase tracking-wide text-gray-700  font-bold mb-2 ">Description</Form.Label>
                   <Form.Control
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500 "
                     required
                     as="textarea"
                     rows="3"
@@ -87,14 +97,14 @@ function Account() {
       ) : (
         <div>
           <p>
-            <strong> SACCO Name:</strong>
+            <strong className="uppercase"> SACCO Name:</strong>
             {name}
           </p>
           <p>
-            <strong>Email:</strong> {email}
+            <strong className="uppercase">Email:</strong> {email}
           </p>
           <p>
-            <strong>Description:</strong> {description}
+            <strong className="uppercase">Description:</strong> {description}
           </p>
           <Button onClick={() => setEditing(true)}>Edit</Button>
         </div>
