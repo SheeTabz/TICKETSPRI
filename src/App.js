@@ -1,16 +1,13 @@
-
-
-
-import './App.css';
-import DashboardTemp from './components/DashboardTemp';
-import SaccoLogin from './components/SaccoLogin';
-import SaccoSignup from './components/SaccoSignup';
-import SaccoLogiPage from './pages/SaccoLogiPage';
-import CarListPage from './pages/CarListPage';
-import EditForm from './components/EditForm';
-import LandingPage from './pages/LandingPage';
-import LogInPage from './pages/LogInPage';
-import BusPage from './pages/BusesPage';
+import "./App.css";
+import DashboardTemp from "./components/DashboardTemp";
+import SaccoLogin from "./components/SaccoLogin";
+import SaccoSignup from "./components/SaccoSignup";
+import SaccoLogiPage from "./pages/SaccoLogiPage";
+import CarListPage from "./pages/CarListPage";
+import EditForm from "./components/EditForm";
+import LandingPage from "./pages/LandingPage";
+import LogInPage from "./pages/LogInPage";
+import BusPage from "./pages/BusesPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -22,6 +19,8 @@ import ResponsivePage from './components/Passengers/Confirmation';
 // import PDFFile from "./components/Passengers/PDFFile";
 
 // import Confirmation from "./components/Passengers/Confirmation";
+
+// import Account from "./components/Passengers/Account";
 function App() {
   return (
 

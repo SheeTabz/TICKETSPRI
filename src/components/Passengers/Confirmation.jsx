@@ -1,13 +1,20 @@
-import React from "react";
+import { React } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import "../Passengers/Passenger.css";
 import NavBar2 from "../NavBar2";
 import Footer from "../Footer";
 
 function ResponsivePage() {
   const componentRef = useRef();
+  const [receipt, setReceipt] = useState([]);
+  useEffect(() => {
+    fetch("/receipt")
+      .then((r) => r.json())
+      .then(setReceipt);
+  }, []);
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "receipt",
@@ -21,7 +28,8 @@ function ResponsivePage() {
         <Row>
           <Col xs={12} className="text-center flex items-center justify-center" style={{ marginTop: "20px" }}>
             <Image
-              src="https://images.unsplash.com/photo-1635070636690-d887c1a77e7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              src={receipt.logoUrl}
+              alt="Bus logo should be here"
               fluid
               width="30%"
               // height="50%"
@@ -40,15 +48,15 @@ function ResponsivePage() {
                 <tr>
                   <th scope="col">
                     Ticket NO. <br />
-                    {"QRS123422"}
+                    {receipt.qr}
                   </th>
                   <th scope="col">
                     Seat NO. <br />
-                    {25}
+                    {receipt.seat}
                   </th>
                   <th scope="col">
                     Route: <br />
-                    {"Nairobi - Pusia"}
+                    {receipt.route}
                   </th>
                 </tr>
               </thead>
@@ -58,11 +66,11 @@ function ResponsivePage() {
                   <td colspan="2">
                     {" "}
                     Name: <br />
-                    {"Nanjala Washington Nanjalaalla"}
+                    {receipt.customer}
                   </td>
                   <td>
                     BUS: <br />
-                    {" Mash-Cool Executive"}
+                    {receipt.busType}
                   </td>
                   {/* <td>@mdo</td> */}
                 </tr>
@@ -70,15 +78,15 @@ function ResponsivePage() {
                   {/* <th scope="row">2</th> */}
                   <td>
                     FROM: <br />
-                    {"Nairobi"}
+                    {receipt.departure}
                   </td>
                   <td>
                     TO: <br />
-                    {"Kisumu"}
+                    {receipt.destination}
                   </td>
                   <td>
                     ID: <br />
-                    {"40293087"}
+                    {receipt.idNo}
                   </td>
                 </tr>
 
@@ -86,16 +94,16 @@ function ResponsivePage() {
                   {/* <th scope="row">2</th> */}
                   <td>
                     Booking Date: <br />
-                    {"12/3/2025"}
+                    {receipt.bookindate}
                   </td>
                   <td>
                     Travel Date <br />
-                    {"12/3/2025"}
+                    {receipt.travelDate}
                   </td>
                   <td>
                     Amount Paid <br />
                     KES
-                    {"1,200/="}
+                    {receipt.amount}
                   </td>
                 </tr>
                 <tr>
@@ -107,7 +115,7 @@ function ResponsivePage() {
                   </td>
                   <td>
                     Phone: <br />
-                    {"072994544"}{" "}
+                    {receipt.phone}
                   </td>
                 </tr>
 
