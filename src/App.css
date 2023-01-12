@@ -17,10 +17,10 @@
 
 @layer components{
     .formsearch{
-        @apply flex space-x-2 justify-center items-center text-base
+        @apply flex space-x-2 justify-center items-center md:text-base 
     }
     form>.search{
-        @apply flex flex-col bg-white lg:w-72 px-4 py-2 rounded-md
+        @apply flex flex-col bg-white lg:w-72 md:w-48 md:px-4 px-1 py-2 rounded-md justify-center w-24 md:text-base text-sm
     }
     .search>input{
         @apply bg-transparent
@@ -40,7 +40,7 @@
         @apply text-gray-500
     }
     .button{
-        @apply border-solid border-2 border-transparent rounded-md px-8 py-2 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold h-full
+        @apply border-solid border-2 border-transparent rounded-md md:px-8  px-4 py-2 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold h-full
     }
     .submit{
         @apply border-solid border-2 border-transparent rounded-b-md px-8 py-3 bg-pink-600 text-white hover:bg-pink-500 duration-500 font-bold w-full  px-0
@@ -51,5 +51,13 @@
     .btn{
         @apply text-xl text-cyan-500 selection:text-blue-600  focus:underline
     }
+    .dashboard>li{
+        @apply flex items-center p-2 text-base font-normal text-gray-700 rounded-lg dark:text-white hover:bg-gray-100 hover:bg-gray-200
+    }
+    
+    .car-det>h1{
+        @apply font-medium text-lg
+    }
   
   }
+

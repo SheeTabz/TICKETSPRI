@@ -22,9 +22,9 @@
   margin: auto;
   margin-top: 5%;
 }
-.parent {
+/* .parent {
   width: 200px;
-}
+} */
 .seat {
   border: 2px solid lime;
   height: 30px;
@@ -35,9 +35,8 @@
 }
 .after {
   width: 45%;
-  min-height: 50vh;
-  border: 2px solid pink;
-  width: 200px;
+  /* border: 2px solid pink; */
+  position: relative;
 }
 @media only screen and (max-width: 450px) {
   * {
@@ -61,6 +60,9 @@
   .backRow {
     justify-content: space-around;
   }
+  .information{
+    font-size: 12px;
+  }
 }
 @media only screen and (max-width: 368px) {
   * {
@@ -82,20 +84,15 @@
   .backRow {
     justify-content: space-around;
   }
+  
 }
 
-.test1 {
-  height: 200px;
-  width: 200px;
-  border: solid 2px red;
-}
-
-.test2 {
-  height: 200px;
-  width: 200px;
-  border: solid 2px lime;
-}
 .input {
   background-color: pink;
   width: 10%;
+}
+
+.information{
+  margin-left: 10%;
+  margin-top: 30px;
 }

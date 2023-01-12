@@ -1,9 +1,11 @@
 import React from 'react'
 import {GrFormAdd} from 'react-icons/gr'
 import Footer from './Footer'
+import RegisteredNavBar from './RegisteredNavBar'
 function DashboardTemp({children}) {
   return (
     <>
+    <RegisteredNavBar/>
     <div className='flex py-8 space-x-8  mx-[100px]'>
     <aside class="w-72 " aria-label="Sidebar">
        <div class=" py-4 px-3 bg-gray-100 rounded ">
@@ -30,7 +32,7 @@ function DashboardTemp({children}) {
           </ul>
        </div>
     </aside>
-    <div className='bg-red-500 flex-1 p-7 h-screen rounded'>
+    <div className='border-2 border-gray-200 flex-1 h-screen rounded'>
         {children}
     </div>
     
