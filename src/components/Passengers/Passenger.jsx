@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Footer from "../Footer";
+import NavBar2 from "../NavBar2";
 // import { useNavigate } from "react-router-dom";
 import "../Passengers/Passenger.css";
 
@@ -39,6 +41,7 @@ export default function Services() {
 
   return (
     <div>
+      <NavBar2/>
       <div className="container">
         <div className="row">
           <form onSubmit={handleSubmit} method="post" className="col-md-6">
@@ -268,6 +271,7 @@ export default function Services() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
