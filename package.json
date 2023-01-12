@@ -18,6 +18,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-seatmap": "^0.1.2",
+    "react-to-print": "^2.14.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

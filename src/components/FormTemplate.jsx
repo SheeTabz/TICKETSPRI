@@ -12,8 +12,8 @@ function FormTemplate({children, login, signup}) {
         <h1 className='font-bold text-3xl text-white'>TICKETSPRI</h1>
         <div className='bg-white  w-[400px] pt-5 space-y-4 rounded-md'>
             <div className='space-x-4 flex justify-center items-center'>
-                <button id='btn1' className="btn" onClick={login} >SIGN IN</button>
-                <button id='btn2' className='btn' onClick={signup}>SIGN UP</button>
+                <button id='btn1' className="btn-log" onClick={login} >SIGN IN</button>
+                <button id='btn2' className='btn-log' onClick={signup}>SIGN UP</button>
             </div>
 {children}
         </div>
