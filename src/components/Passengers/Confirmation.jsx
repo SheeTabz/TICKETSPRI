@@ -3,6 +3,8 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
 import "../Passengers/Passenger.css";
+import NavBar2 from "../NavBar2";
+import Footer from "../Footer";
 
 function ResponsivePage() {
   const componentRef = useRef();
@@ -13,13 +15,11 @@ function ResponsivePage() {
   });
   return (
     <>
-      <button fluid className="printbtn" onClick={handlePrint}>
-        Print Receipt
-      </button>
+    <NavBar2/>
 
       <Container ref={componentRef} width="70%">
         <Row>
-          <Col xs={12} className="text-center" style={{ marginTop: "20px" }}>
+          <Col xs={12} className="text-center flex items-center justify-center" style={{ marginTop: "20px" }}>
             <Image
               src="https://images.unsplash.com/photo-1635070636690-d887c1a77e7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
               fluid
@@ -126,8 +126,14 @@ function ResponsivePage() {
             </table>
           </Col>
         </Row>
+        <button fluid className="printbtn flex justify-center items-center bg-sky-500" onClick={handlePrint}>
+        Print Receipt
+      </button>
       </Container>
+     
+      <Footer/>
     </>
+   
   );
 }
 

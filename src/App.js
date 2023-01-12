@@ -15,6 +15,8 @@ import BusPage from './pages/BusesPage';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import Account from './components/Passengers/Account';
+import ResponsivePage from './components/Passengers/Confirmation';
 // import { PDFDownloadLink } from "@react-pdf/renderer";
 
 // import PDFFile from "./components/Passengers/PDFFile";
@@ -29,7 +31,9 @@ function App() {
   {/* <NavBar2/> */}
   {/* <LandingPage/> */}
   {/* <LogInPage/> */}
-  <BusPage/>
+  {/* <BusPage/> */}
+  {/* <Account/> */}
+  <ResponsivePage/>
     </div>
 
 
