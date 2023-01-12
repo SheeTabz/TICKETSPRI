@@ -46,7 +46,7 @@ console.log(formData)
                 value={formData.arrival}  
                 onChange={handleChange}/>
             </div>
-            <button type="submit" className='h-full button'>Search</button>
+            <button type="submit" className='h-full buton'>Search</button>
         </form>
     </div>
   )
