@@ -5,13 +5,13 @@ import NavBar2 from '../components/NavBar2'
 import SignUpForm from '../components/SignUpForm'
 
 
-function LogInPage() {
+function LogInPage({click, user}) {
     const [showLogin, setShowLogin] = useState(true)
   return (
     <div>
        
            {showLogin ? (
-<LogInForm signup={() => setShowLogin(false)} />
+<LogInForm signup={() => setShowLogin(false)} click={click} user={user}/>
         ) : (
 <SignUpForm login={() => setShowLogin(true)} />
         )}

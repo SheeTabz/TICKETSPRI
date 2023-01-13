@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {nav1} from './data'
 import TransButton from './TransButton'
 import WhiteButton from './WhiteButton'
-function Nav3() {
+import {IoPersonCircle }from  'react-icons/io5'
+function Nav3({user}) {
+
+
   return (
     <div className='h-[10vh] flex text-white font-semibold'>
     <div className='flex items-center md:container md:flex-row md:m-auto justify-between flex-col w-full '>
@@ -14,8 +17,9 @@ function Nav3() {
         })}
         </ul>
         <div className='flex flex-row space-x-5 hidden md:block'>
-            <TransButton/>
-            <WhiteButton/>
+            {/* <TransButton/> */}
+            {user ?  <span className='md:text-4xl text-3xl'><IoPersonCircle/></span>:<WhiteButton/>}
+           
         </div>
     </div>
     </div>
