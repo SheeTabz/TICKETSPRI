@@ -2,12 +2,12 @@ import React, { useState, useRef } from "react";
 import "../bus.css";
 
 function BusCard() {
-  const [visible, setVisible] = useState(false);
-  const pageRef = useRef(null);
-  const handleClick = () => {
-    // Toggle the visibility of the page div
-    setVisible(!visible);
-  };
+  // const [visible, setVisible] = useState(false);
+  // const pageRef = useRef(null);
+  // const handleClick = () => {
+  //   // Toggle the visibility of the page div
+  //   setVisible(!visible);
+  // };
   return (
     <>
       <div className=" flex flex-row justify-between shadow-lg container m-auto">
@@ -43,7 +43,6 @@ function BusCard() {
         <div className=" flex flex-col justify-evenly">
           <h5>sh.1000</h5>
           <button
-            onClick={handleClick}
             className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 "
           >
             Select
@@ -51,7 +50,7 @@ function BusCard() {
         </div>
       </div>
       {/* drop down */}
-      <div
+      {/* <div
         className="flex p-12 m-0 justify-center"
         ref={pageRef}
         style={{ display: visible ? "flex" : "none" }}
@@ -62,7 +61,7 @@ function BusCard() {
           alt="bus"
           className="object-contain   max-h-48 p-4"
         />
-      </div>
+      </div> */}
     </>
   );
 }
