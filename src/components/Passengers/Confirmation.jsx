@@ -5,6 +5,9 @@ import { useRef, useState, useEffect } from "react";
 import "../Passengers/Passenger.css";
 import NavBar2 from "../NavBar2";
 import Footer from "../Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 function ResponsivePage() {
   const componentRef = useRef();

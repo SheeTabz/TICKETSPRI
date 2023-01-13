@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "../Passengers/Passenger.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 export default function Payment() {
   const [isOpen, setIsOpen] = useState(false);

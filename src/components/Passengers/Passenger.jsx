@@ -3,6 +3,9 @@ import Footer from "../Footer";
 import NavBar2 from "../NavBar2";
 // import { useNavigate } from "react-router-dom";
 import "../Passengers/Passenger.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 export default function Services() {
   const [firstname, setFirstName] = useState("");

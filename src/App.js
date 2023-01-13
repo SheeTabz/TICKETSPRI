@@ -8,9 +8,7 @@ import EditForm from './components/EditForm';
 import LandingPage from './pages/LandingPage';
 import LogInPage from './pages/LogInPage';
 import BusPage from './pages/BusesPage';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import BusPages from './pages/BusesPage';
 import DisplaySeats from './components/displaySeat';

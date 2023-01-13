@@ -1,6 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import DashboardTemp from "../DashboardTemp";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 function Account() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
