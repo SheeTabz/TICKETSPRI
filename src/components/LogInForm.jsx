@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormTemplate from './FormTemplate'
 
-function LogInForm({signup, click, user}) {
+function LogInForm({signup, handleuser, user, setUser}) {
 const [formData, setFormData] = useState({
 email: '',
 password: '',
@@ -9,17 +9,35 @@ password: '',
 
 function handleSubmit(e){
   e.preventDefault()
-click()
+fetch("/customer/login",
+  {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData)
+  }
+  )
+  .then(resp => {
+    if(resp.ok){
+      resp.json()
+      .then(data => handleuser(data))
+    }
+    else{
+      resp.json().then( error => console.log(error.errors));
+    }
+
+  })
 }
 
 function handleChange(e){
   setFormData({...formData, [e.target.name]: e.target.value})
 }
 console.log(formData)
-console.log(user)
+// console.log(user)
   return (
-    <FormTemplate signup={signup} user={user}>
-        <form className='flex flex-col  space-y-6' onClick={handleSubmit}>
+    <FormTemplate signup={signup} user={user} setUser={setUser}>
+        <form className='flex flex-col  space-y-6' onSubmit={handleSubmit}>
         <div className='flex flex-col  space-y-4 px-5  form '>
         <input 
         type="text" 
@@ -29,7 +47,7 @@ console.log(user)
         onChange={handleChange}
         />
      <input 
-        type="text" 
+        type="password" 
         name="password" 
         placeholder="Password"
         value={formData.password} 
