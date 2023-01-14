@@ -7,7 +7,7 @@ const nav1 = [
     },
     {
         name: 'Book Ticket',
-        path: '/tickets',
+        path: '/bookTicket',
     },
     {
         name: 'Manage Booking',
