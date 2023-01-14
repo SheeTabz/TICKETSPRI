@@ -47,6 +47,7 @@ function handleSearch(loc){
   console.log(vehicles)
   return (
    <div>
+    {/* jjj */}
 {/* <SaccoLogin/> */}
 {/* <SaccoSignup/> */}
 {/* <SaccoLogiPage/> */}
