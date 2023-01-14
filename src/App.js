@@ -7,15 +7,28 @@ import CarListPage from './pages/CarListPage';
 import EditForm from './components/EditForm';
 import LandingPage from './pages/LandingPage';
 import LogInPage from './pages/LogInPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
-  const [user, setUser] = useState(false)
+  const [user, setUser] = useState({})
 
-  function handleuser(){
-setUser(true);
+  function handleuser(user){
+setUser(user);
   }
+useEffect(() => {
+  fetch("/me")
+  .then(res => {
+    if(res.ok && Object.keys(user).length > 0 ){
+      res.json().then(data => setUser(data))
+    }
+    else{
+      res.json().then(err => console.log(err.errors))
+    }
+  })
+},[])
+
+  console.log(user)
   return (
    <div>
 {/* <SaccoLogin/> */}
@@ -24,7 +37,7 @@ setUser(true);
 {/* <CarListPage/> */}
 {/* <EditForm/> */}
 {/* <LandingPage/> */}
-<LogInPage click={handleuser} user={user}/>
+<LogInPage handleuser={handleuser} user={user} setUser={setUser}/>
 </div>
   );
 }
