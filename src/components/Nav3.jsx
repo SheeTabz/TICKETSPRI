@@ -3,8 +3,15 @@ import {nav1} from './data'
 import TransButton from './TransButton'
 import WhiteButton from './WhiteButton'
 import {IoPersonCircle }from  'react-icons/io5'
-function Nav3({user}) {
+function Nav3({user, setUser}) {
+  function handleClick(){
 
+    fetch("/customer/logout",{
+      method: "DELETE"
+    })
+    .then(resp => resp.json())
+    .then(setUser(null))
+      }
 
   return (
     <div className='h-[10vh] flex text-white font-semibold'>
@@ -17,8 +24,12 @@ function Nav3({user}) {
         })}
         </ul>
         <div className='flex flex-row space-x-5 hidden md:block'>
-            {/* <TransButton/> */}
-            {user ?  <span className='md:text-4xl text-3xl'><IoPersonCircle/></span>:<WhiteButton/>}
+           
+            {user?  
+            (<div className='flex flex-row space-x-5'>
+              <button className='md:px-5 md:py-2  px-2 border-2 border-black rounded-md border-white ' onClick={handleClick}>Log out </button>
+            <span className='md:text-4xl text-3xl'><IoPersonCircle/></span></div>)
+            :<WhiteButton/>}
            
         </div>
     </div>
