@@ -59,9 +59,7 @@ useEffect(() => {
  <Route path="/saccoNew" element={<AddCars/>}/>
  
  
- 
- 
-  {/* <BusPage/> */}
+
   </Routes>
     </div>
     </BrowserRouter>
