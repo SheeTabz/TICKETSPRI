@@ -7,7 +7,7 @@ function Nav3({user, setUser}) {
   function handleClick(){
 
     fetch("/customer/logout",{
-      method: "DELETE"
+      method: "DELETE",
     })
     .then(resp => resp.json())
     .then(setUser(null))
