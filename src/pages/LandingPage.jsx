@@ -4,11 +4,11 @@ import Footer from '../components/Footer'
 import Nav3 from '../components/Nav3'
 import SearchLoc from '../components/SearchLoc'
 
-function LandingPage() {
+function LandingPage({user, setUser}) {
   return (
    <>
     <div className='background'>
- <Nav3/>
+ <Nav3 user={user} setUser={setUser}/>
 <SearchLoc/>
 
      </div>
