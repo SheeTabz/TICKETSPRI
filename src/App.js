@@ -47,12 +47,13 @@ useEffect(() => {
 <BrowserRouter>
     <div className="App">
  <Routes>
-  <Route path="/"   element={ <LandingPage/>}  />
+  <Route path="/"   element={ <LandingPage user={user} setUser={setUser}/>}  />
  <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser}/>}/>
  <Route path="/saccolog" element={<SaccoLogiPage/>}/>
- <Route path="/bookTicket" element={<BusPages/>}/>
+ <Route path="/bookTicket" element={<BusPages  user={user} setUser={setUser}/>}/>
  <Route path="/seats" element={<DisplaySeats/>}/>
- <Route path="/confirmation" element={<ResponsivePage/>}/>
+ <Route path="/bookTicket" element={<BusPages  user={user} setUser={setUser}/>}/>
+ <Route path="/confirmation" element={<ResponsivePage user={user} />}/>
  <Route path="/passengerDetails" element={<Services/>}/>
  <Route path="/saccoAccount" element={<Account/>}/>
  <Route path="/saccoBuses" element={<CarListPage/>}/>
