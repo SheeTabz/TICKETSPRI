@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import FormTemplate from './FormTemplate'
 
-function SignUpForm({login}) {
+function SignUpForm({login, handleuser, user}) {
 const [formData, setFormData] = useState({
   name:"",
   email:"",
@@ -16,11 +16,32 @@ console.log(formData)
 
 function handleClick(e) {
   e.preventDefault()
+  fetch("/customer/signup",
+  {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData)
+  }
+  )
+  .then(resp => {
+    if(resp.ok){
+      resp.json()
+      .then(data => handleuser(data))
+    }
+    else{
+      resp.json().then( error => console.log(error.errors));
+    }
+
+  })
+  // console.log(user)
+ 
 
 }
   return (
-    <FormTemplate login={login}>
-  <form className='flex flex-col  space-y-6' onClick={handleClick}>
+    <FormTemplate login={login} user={user}>
+  <form className='flex flex-col  space-y-6' onSubmit={handleClick}>
     <div className='flex flex-col  space-y-4 px-5  form '>
         <input 
         type="name" 
@@ -38,7 +59,8 @@ function handleClick(e) {
         placeholder="Password" 
         onChange={handleChange}/>
         <input 
-        type="password-confirmation" 
+      
+        type="password" 
         name="password_confirmation" 
         placeholder="Password Confirmation" 
         onChange={handleChange}/>
