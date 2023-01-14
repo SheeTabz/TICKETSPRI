@@ -11,7 +11,7 @@ function Nav3({user, setUser}) {
   function handleClick(){
 
     fetch("/customer/logout",{
-      method: "DELETE"
+      method: "DELETE",
     })
     .then(resp => resp.json())
     .then(setUser(null))
@@ -28,7 +28,7 @@ function Nav3({user, setUser}) {
         })}
         </ul>
 
-        <div className='flex flex-row space-x-5 hidden md:block'>
+        <div className='flex flex-row space-x-5  md:block'>
            
             {user?  
             (<div className='flex flex-row space-x-5'>
