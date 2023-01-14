@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [user, setUser] = useState({})
+  const [vehicles, setVehicles] = useState([])
 
   function handleuser(user){
 setUser(user);
@@ -28,7 +29,22 @@ useEffect(() => {
   })
 },[])
 
-  console.log(user)
+function handleSearch(loc){
+  fetch("/vehicles")
+  .then(res =>{
+    if(res.ok){
+      res.json()
+      .then(data => {
+       data.find(car => car.route_id === Number(loc) ? setVehicles([...vehicles, car]) : alert('Sorry, no available vehicles for that route at the moment'));
+     
+      })
+    }
+    else{
+      res.json().then(err => console.log(err.error))
+    }
+  })
+}
+  console.log(vehicles)
   return (
    <div>
 {/* <SaccoLogin/> */}
@@ -36,8 +52,8 @@ useEffect(() => {
 {/* <SaccoLogiPage/> */}
 {/* <CarListPage/> */}
 {/* <EditForm/> */}
-{/* <LandingPage/> */}
-<LogInPage handleuser={handleuser} user={user} setUser={setUser}/>
+<LandingPage handleSearch={handleSearch}/>
+{/* <LogInPage handleuser={handleuser} user={user} setUser={setUser}/> */}
 </div>
   );
 }
