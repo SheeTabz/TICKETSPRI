@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import {VscArrowSwap} from 'react-icons/vsc'
 
-function SearchLoc() {
+function SearchLoc({handleSearch}) {
     const [formData, setFormData] = useState({
         route: '',
         departure: '',
         arrival: ''
     })
-    
+    function handleSubmit(e){
+        e.preventDefault()
+        handleSearch(formData.route)
+    }
     function handleChange(e){
         setFormData({...formData, [e.target.name]: e.target.value})
     }
@@ -15,7 +18,7 @@ console.log(formData)
   return (
     <div className='mt-[150px] flex flex-col h-full items-center space-y-8 '>
         <h1 className='text-white md:text-6xl text-4xl'>Where will you go next ?</h1>
-        <form className='formsearch '>
+        <form className='formsearch ' onSubmit={handleSubmit}>
 
             <div className='search '>
                 <div className='flex md:w-full  w-fit md:space-x-5 space-x-2 items-center justify-between'>
@@ -25,9 +28,10 @@ console.log(formData)
                </div>
                 <select class="" aria-label=".form-select-lg example" name='route' onChange={handleChange} >
         <option selected>Select route: </option>
-        <option value="1">Nairobi - Garissa</option>
-        <option value="2">Kisumu - Nairobi</option>
-        <option value="3">Eldoret - Isiolo</option>
+        <option value="1">Nairobi - Mombasa</option>
+        <option value="2">Kisumu - Nakuru</option>
+        <option value="3">Nairobi - Kisumu</option>
+        <option value="4">Eldoret - Isiolo</option>
     </select>
             </div>
             <div className='search'>

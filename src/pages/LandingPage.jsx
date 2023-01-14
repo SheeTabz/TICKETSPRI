@@ -4,12 +4,12 @@ import Footer from '../components/Footer'
 import Nav3 from '../components/Nav3'
 import SearchLoc from '../components/SearchLoc'
 
-function LandingPage() {
+function LandingPage({handleSearch}) {
   return (
    <>
     <div className='background'>
  <Nav3/>
-<SearchLoc/>
+<SearchLoc handleSearch={handleSearch}/>
 
      </div>
      <AboutUs/>
