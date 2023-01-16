@@ -20,10 +20,11 @@ import ResponsivePage from './components/Passengers/Confirmation';
 import Services from './components/Passengers/Passenger';
 import Account from './components/Passengers/Account';
 import AddCars from './components/AddCars';
-// import Payment from "./components/Passengers/Payment";
-function App() {
 
+
+function App() {
   const [user, setUser] = useState({})
+  const [vehicles, setVehicles] = useState([])
 
   function handleuser(user){
 setUser(user);
@@ -40,14 +41,28 @@ useEffect(() => {
   })
 },[])
 
-  // console.log(user)
-
+function handleSearch(loc){
+  fetch("/vehicles")
+  .then(res =>{
+    if(res.ok){
+      res.json()
+      .then(data => {
+       data.find(car => car.route_id === Number(loc) ? setVehicles([...vehicles, car]) : alert('Sorry, no available vehicles for that route at the moment'));
+     
+      })
+    }
+    else{
+      res.json().then(err => console.log(err.error))
+    }
+  })
+}
+  console.log(vehicles)
 
   return (
 <BrowserRouter>
     <div className="App">
  <Routes>
-  <Route path="/"   element={ <LandingPage/>}  />
+  <Route path="/"   element={ <LandingPage handleSearch={handleSearch}/>}  />
  <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser}/>}/>
  <Route path="/saccolog" element={<SaccoLogiPage/>}/>
  <Route path="/bookTicket" element={<BusPages/>}/>

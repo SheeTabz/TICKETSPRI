@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {nav1} from './data'
 import TransButton from './TransButton'
 import WhiteButton from './WhiteButton'
@@ -12,13 +11,12 @@ function NavBar1() {
         <div className='flex items-center space-x-5 '>
             <ul className='flex space-x-5 font-'>
             {nav1.map((data, index) => {
-            return <Link to={data.path} className="text-white font-semibold no-underline"><li key={index}>{data.name}</li></Link> 
+            return <li key={index}>{data.name}</li>
             })}
             </ul>
             <div className='flex space-x-5'>
-                {/* <TransButton/> */}
-                <Link to="/login"><WhiteButton/></Link>
-                
+                <TransButton/>
+                <WhiteButton/>
             </div>
         </div>
         </div>
