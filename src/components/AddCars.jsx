@@ -82,13 +82,15 @@ function AddCars() {
   return (
     <>
       <DashboardTemp>
-        <div className="flex flex-col border-solid border-2 border-red-200 rounded ">
+
+        <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
-            <h1 className="text-center mt-1 text-xs md:text-xl">Add Cars</h1>
-            <button
+            <h1 className=" text-3xl font-medium">Add Cars</h1>
+              <button
               onClick={handlePatch}
               class="bg-blue-500 hover:bg-blue-700 text-white text-center text-xs md:text-xl f py-1 px-2 xl:md:py-2 xl:md:px-6 md:font-bold xl:py-2 xl:px-4 rounded "
             >
+
               Save
             </button>
           </div>

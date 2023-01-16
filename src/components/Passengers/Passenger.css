@@ -1,0 +1,77 @@
+/* body {
+  background-color: #ccc;
+} */
+.form-pannels {
+  background-color: white;
+  padding: 15px;
+  width: 100%;
+  margin: 25px 0;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+.input-group {
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.input-group label {
+  color:rgb(14 165 233);
+}
+.input-group .input_field {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+#table {
+  padding: 30px;
+}
+.input-group-2 .input_field {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.input-group-2 label {
+  color:rgb(14 165 233);
+}
+.button {
+  background-color: rgb(14 165 233);
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+/* .form-pannels>p {
+  font-weight: medium;
+  font-style: italic;
+} */
+p span {
+  font-weight: bolder;
+  font-style: normal;
+  color: green;
+}
+.Paymentbtn {
+  background-color: rgb(14 165 233);
+  color: white;
+  padding: 10px;
+  font-weight: bolder;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mpesa {
+  color: green;
+  font-weight: bolder;
+}
+.printbtn {
+  
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+ 
+}

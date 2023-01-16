@@ -1,13 +1,10 @@
 import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../bus.css";
 
+
 function BusCard({bus, key,image,depature,arrival,seats, price}) {
-  // const [visible, setVisible] = useState(false);
-  // const pageRef = useRef(null);
-  // const handleClick = () => {
-  //   // Toggle the visibility of the page div
-  //   setVisible(!visible);
-  // };
+
   return (
     <>
       <div key={key} className=" flex flex-row justify-between shadow-lg container m-auto">
@@ -41,12 +38,14 @@ function BusCard({bus, key,image,depature,arrival,seats, price}) {
         </div>
         {/* div holding price and button */}
         <div className=" flex flex-col justify-evenly">
+
           <h5>{`${price}`}</h5>
           <button
             className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 "
           >
             Select
           </button>
+         
         </div>
       </div>
       {/* drop down */}
