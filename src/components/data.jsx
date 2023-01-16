@@ -13,10 +13,10 @@ const nav1 = [
         name: 'Manage Booking',
         path: '/manage',
     },
-    {
-        name: 'Are you a sacco?',
-        path: '/saccolog',
-    }
+    // {
+    //     name: 'Are you a sacco?',
+    //     path: '/saccolog',
+    // }
 ]
 const nav2 = [
     {
