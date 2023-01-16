@@ -12,7 +12,7 @@ function DisplaySeats() {
   const [items, setItems] = useState([]);
   //********-----------functions-----------****************
   function deleteItem(id) {
-    // fetch(`/songs/${id}`, {
+    // fetch(`/seats/${id}`, {
     //   method: "PATCH",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -21,7 +21,7 @@ function DisplaySeats() {
     //     selected: false,
     //   }),
     // }).then(
-    fetch(`/musics/${id}`, {
+    fetch(`/selectedseats/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -37,13 +37,13 @@ function DisplaySeats() {
   }
 
   function fetchMapped() {
-    fetch("musics")
+    fetch("/selectedseats")
       .then((response) => response.json())
       .then((data) => setItems(data));
   }
   // <<<<------------------fecth request----------------->>>>>>>>>
   useEffect(() => {
-    fetch("songs")
+    fetch("/seats")
       .then((response) => response.json())
       .then((data) => setUsers(data));
     fetchMapped();
@@ -65,19 +65,12 @@ function DisplaySeats() {
   usedData();
 
   const handleClick = (index) => {
-    // fetch(`/songs/${index + 1}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     selected: true,
-    //   }),
-    // }).then(
-    fetch(`/songs/${index + 1}`)
+    fetch(`/seats/${index + 1}`)
       .then((response) => response.json())
       .then((data) => {
-        fetch("musics", {
+//        let send = { seat_no: data.seat_no, status: data.status };
+        //console.log(send);
+        fetch("/selectedseats", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -85,10 +78,8 @@ function DisplaySeats() {
           body: JSON.stringify(data),
         })
           .then((response) => response.json())
-          // .then((data) => console.log(data));
           .then(() => fetchMapped());
       });
-    //);
   };
 
   return (
@@ -736,7 +727,7 @@ function DisplaySeats() {
                   key={item.id}
                 >
                   <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    {item.name}
+                    {item.seat_no}
                   </td>
                   <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
                     {`${item.name}00`}
