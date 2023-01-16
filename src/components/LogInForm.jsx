@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormTemplate from './FormTemplate'
 
-function LogInForm({signup, handleuser, user, setUser}) {
+function LogInForm({signup, handleuser, user, setUser, initials}) {
 const [formData, setFormData] = useState({
 email: '',
 password: '',
@@ -36,7 +36,7 @@ function handleChange(e){
 console.log(formData)
 // console.log(user)
   return (
-    <FormTemplate signup={signup} user={user} setUser={setUser}>
+    <FormTemplate signup={signup} user={user} setUser={setUser} initials={initials}>
         <form className='flex flex-col  space-y-6' onSubmit={handleSubmit}>
         <div className='flex flex-col  space-y-4 px-5  form '>
         <input 

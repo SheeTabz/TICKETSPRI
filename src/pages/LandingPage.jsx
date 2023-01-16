@@ -5,11 +5,11 @@ import Nav3 from '../components/Nav3'
 import SearchLoc from '../components/SearchLoc'
 
 
-function LandingPage({user, setUser, handleSearch}) {
+function LandingPage({user, setUser, handleSearch, initials}) {
   return (
    <>
     <div className='background'>
- <Nav3 user={user} setUser={setUser}/>
+ <Nav3 user={user} setUser={setUser} initials={initials}/>
 <SearchLoc handleSearch={handleSearch}/>
 
 
