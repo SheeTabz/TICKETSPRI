@@ -16,11 +16,12 @@ import BusPage from './pages/BusesPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import BusPages from './pages/BusesPage';
 import DisplaySeats from './components/displaySeat';
-import ResponsivePage from './components/Passengers/Confirmation';
-import Services from './components/Passengers/Passenger';
-import Account from './components/Passengers/Account';
+// import ResponsivePage from './components/Passengers/Confirmation';
+// import Services from './components/Passengers/Passenger';
+// import Account from './components/Passengers/Account';
 import AddCars from './components/AddCars';
 import UserAccount from './pages/UserAccount';
+import FormsPage from './pages/FormsPage';
 
 
 function App() {
@@ -83,9 +84,10 @@ function handleSearch(loc){
  <Route path="/saccolog" element={<SaccoLogiPage/>}/>
  <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/seats" element={<DisplaySeats/>}/>
- <Route path="/confirmation" element={<ResponsivePage/>}/>
- <Route path="/passengerDetails" element={<Services/>}/>
- <Route path="/saccoAccount" element={<Account/>}/>
+ {/* <Route path="/confirmation" element={<ResponsivePage/>}/> */}
+ <Route path="/passengerDetails" element={<FormsPage/>}/>
+ 
+ {/* <Route path="/saccoAccount" element={<Account/>}/> */}
  <Route path="/saccoBuses" element={<CarListPage/>}/>
  <Route path="/saccoNew" element={<AddCars/>}/>
  <Route path="/account" element={<UserAccount user={user} setUser={setUser} initials={initials}/>}/>
