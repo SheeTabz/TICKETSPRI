@@ -13,6 +13,7 @@ function AddCars() {
   const [drop, setDrop] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [errors, setErrors] = useState("");
   const [price, setPrice] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState("");
@@ -44,27 +45,28 @@ function AddCars() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    uploadFile();
-    // fetch("/addcars", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     navigate("/home");
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    uploadFile()
+      fetch("/saccos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((r) => {
+        if (r.ok) {
+          // navigate("/home");
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      })
+    
     console.log(formData);
   }
 
   function handlePatch(e) {
     e.preventDefault();
     uploadFile();
-    // fetch("/addcars", {
+    // fetch("/saccos", {
     //   method: "PATCH",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -82,15 +84,13 @@ function AddCars() {
   return (
     <>
       <DashboardTemp>
-
         <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
-              <button
+            <button
               onClick={handlePatch}
               class="bg-blue-500 hover:bg-blue-700 text-white text-center text-xs md:text-xl f py-1 px-2 xl:md:py-2 xl:md:px-6 md:font-bold xl:py-2 xl:px-4 rounded "
             >
-
               Save
             </button>
           </div>

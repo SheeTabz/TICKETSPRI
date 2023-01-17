@@ -2,16 +2,17 @@ import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../bus.css";
 
-
-function BusCard({bus, key,image,depature,arrival,seats, price}) {
-
+function BusCard({ bus, key, image, depature, arrival, seats, price }) {
   return (
     <>
-      <div key={key} className=" flex flex-row justify-between shadow-lg container m-auto">
+      <div
+        key={key}
+        className=" flex flex-row justify-between shadow-lg container m-auto"
+      >
         {/* div holding image */}
         <div className=" flex flex-col justify-evenly  ">
           <img
-            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YnVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            src={image}
             alt="bus"
             className="object-contain   max-h-32 p-4"
           />
@@ -38,14 +39,10 @@ function BusCard({bus, key,image,depature,arrival,seats, price}) {
         </div>
         {/* div holding price and button */}
         <div className=" flex flex-col justify-evenly">
-
           <h5>{`${price}`}</h5>
-          <button
-            className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 "
-          >
+          <button className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 ">
             Select
           </button>
-         
         </div>
       </div>
       {/* drop down */}
