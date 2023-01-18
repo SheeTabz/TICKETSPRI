@@ -14,18 +14,14 @@ function UserDashboard({children,user, setUser, initials}) {
        <div class=" py-4 px-3 lg:bg-gray-100 rounded ">
           <ul class="lg:space-y-2 dashboard flex lg:flex-col flex-row ">
              <li className="">
-                 <span class="ml-3">Account</span>
+                 <span class="ml-3">Profile</span>
             
              </li>
              <li className="">
-                 <span class="ml-3">Car List</span>
+                 <span class="ml-3">Booking History</span>
             
              </li>
-             <li className="justify-between">
-                 <span class="ml-3">Add Car</span>
-                 <GrFormAdd className='text-2xl'/>
-            
-             </li>
+             
              <li className="">
                  <span class="ml-3 text-red-500">Delete account</span>
                 
