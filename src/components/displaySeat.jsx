@@ -1,5 +1,7 @@
 import { waitForElementToBeRemoved } from "@testing-library/react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./displayseat.css";
 function DisplaySeats() {
   // ++++++++++-------------constants--------------++++++++++++=
@@ -10,6 +12,8 @@ function DisplaySeats() {
   const [checked, setChecked] = useState(false);
   const [boolean, setBoolean] = useState(false);
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
+
   //********-----------functions-----------****************
   function deleteItem(item) {
     // fetch(`/seats/${id}`, {
@@ -80,6 +84,9 @@ function DisplaySeats() {
 
   usedData();
   const [data, setData] = useState(null);
+  function handleNavigate() {
+    navigate("/passengerDetails");
+  }
 
   const handleClick = (index) => {
     fetch(`/seats/${index + 1}`)
@@ -102,9 +109,9 @@ function DisplaySeats() {
   return (
     <>
       {/* parent div */}
-      <button className="bg-red-200" onClick={handleClear}>
+      {/* <button className="bg-red-200" onClick={handleClear}>
         Clear All Data
-      </button>
+      </button> */}
 
       <div className="information flex items-center	w-1/5	p-2 bg-gray-100  text-sm">
         <p className="text-sm md:text-base">
@@ -751,7 +758,7 @@ function DisplaySeats() {
                     {item}
                   </td>
                   <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                    {`${item}00`}
+                    {`${item}`}
                   </td>
                   <td className="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
                     <button
@@ -768,6 +775,7 @@ function DisplaySeats() {
           <button
             type="button"
             className="mb-2 w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            onClick={handleNavigate}
           >
             Proceed to Booking
           </button>
