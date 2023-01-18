@@ -1,21 +1,52 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import FormTemplate from './FormTemplate'
 
-function SaccoSignup({login}) {
+function SaccoSignup({login, setSacco}) {
 
   const [formData, setFormData] = useState({
     name:"",
     email:"",
     password:"",
     password_confirmation: "",
+    
   })
-  
+  const navigate = useNavigate()
+
+
+function handleSubmit(e){
+  e.preventDefault();
+  fetch("/sacco/signup",
+  {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData)
+  }
+  )
+  .then(resp => {
+    if(resp.ok){
+      resp.json()
+      .then(data => setSacco(data))
+      navigate("/saccoAccount")
+    }
+    else{
+      resp.json().then( error => console.log(error.errors));
+    }
+
+  })
+
+}
+
   function handleChange(e){
     setFormData({...formData, [e.target.name]: e.target.value})
   }
+console.log(formData)
+
   return (
    <FormTemplate login={login}>
-     <form className='flex flex-col  space-y-6'>
+     <form className='flex flex-col  space-y-6' onSubmit={handleSubmit}>
     <div className='flex flex-col  space-y-4 px-5  form '>
         <input 
         type="name" 
@@ -26,6 +57,7 @@ function SaccoSignup({login}) {
         name="email" 
         placeholder="Sacco Email"
         onChange={handleChange} />
+
         <input 
         type="password" 
         name="password" 
