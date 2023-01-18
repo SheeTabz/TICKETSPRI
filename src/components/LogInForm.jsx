@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import FormTemplate from './FormTemplate'
+import {useNavigate} from 'react-router-dom'
 
-function LogInForm({signup, handleuser, user, setUser}) {
+function LogInForm({signup, handleuser, user, setUser, initials}) {
 const [formData, setFormData] = useState({
 email: '',
 password: '',
 })
-
+const navigate = useNavigate()
 function handleSubmit(e){
   e.preventDefault()
 fetch("/customer/login",
@@ -22,6 +23,9 @@ fetch("/customer/login",
     if(resp.ok){
       resp.json()
       .then(data => handleuser(data))
+      navigate("/")
+      window.location.reload()
+     
     }
     else{
       resp.json().then( error => console.log(error.errors));
@@ -36,7 +40,7 @@ function handleChange(e){
 console.log(formData)
 // console.log(user)
   return (
-    <FormTemplate signup={signup} user={user} setUser={setUser}>
+    <FormTemplate signup={signup} user={user} setUser={setUser} initials={initials}>
         <form className='flex flex-col  space-y-6' onSubmit={handleSubmit}>
         <div className='flex flex-col  space-y-4 px-5  form '>
         <input 

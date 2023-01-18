@@ -1,15 +1,17 @@
+
 import { useState } from "react";
 
 import DashboardTemp from "./DashboardTemp";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 import { v4 } from "uuid";
-function AddCars() {
+function AddCars({sacco, setSacco}) {
   const [cars, setCars] = useState("");
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState();
   const [plate, setPlate] = useState("");
   const [seat, setSeat] = useState("");
   const [pickup, setPickup] = useState("");
+  const [route, setRoute] = useState();
   const [drop, setDrop] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -21,7 +23,8 @@ function AddCars() {
 
   // handle form submit
   const uploadFile = () => {
-    console.log("started")
+    console.log("started");
+
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -32,22 +35,21 @@ function AddCars() {
   };
 
   const formData = {
-    cars,
-    desc,
-    plate,
-    seat,
-    pickup,
-    drop,
-    from,
-    to,
-    price,
-    imageUrls,
+    vehicle_name: cars,
+    sacco_id: sacco.id,
+    no_of_seats: seat,
+    route_id:route,
+    departure_time: pickup,
+    arrival_time: drop,
+    image:imageUrls,
   };
-
+// console.log(sacco)
   function handleSubmit(e) {
     e.preventDefault();
     uploadFile();
-    fetch("/saccos", {
+
+    fetch(`/vehicles`, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +57,9 @@ function AddCars() {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        // navigate("/home");
+
+        //  navigate("/saccoBuses");
+
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -80,11 +84,14 @@ function AddCars() {
     //     r.json().then((err) => setErrors(err.errors));
     //   }
     // });
+
   }
 
   return (
     <>
-      <DashboardTemp>
+
+      <DashboardTemp sacco={sacco} setSacco={setSacco}>
+
         <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
@@ -117,12 +124,12 @@ function AddCars() {
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-last-name"
                 >
-                  Description
+                  Number
                 </label>
                 <input
                   class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                   id="grid-last-name"
-                  type="text"
+                  type="number"
                   placeholder="color.... height....."
                   onChange={(e) => setDesc(e.target.value)}
                 />
@@ -203,13 +210,19 @@ function AddCars() {
                 >
                   Route (point 1)
                 </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="text"
-                  placeholder="Naivasha "
-                  onChange={(e) => setFrom(e.target.value)}
-                />
+                <select
+                  class=""
+                  aria-label=".form-select-lg example"
+                  name="route"
+                  type="number"
+                  onChange={(e) => setRoute(e.target.value)}
+                >
+                  <option selected>Select route: </option>
+                  <option value={1}>Nairobi - Mombasa</option>
+                  <option value={2}>Kisumu - Nakuru</option>
+                  <option value={3}>Nairobi - Kisumu</option>
+                  <option value={4}>Eldoret - Isiolo</option>
+                </select>
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
@@ -286,3 +299,5 @@ function AddCars() {
 }
 
 export default AddCars;
+
+

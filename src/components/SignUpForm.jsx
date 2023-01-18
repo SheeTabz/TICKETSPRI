@@ -1,13 +1,17 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import FormTemplate from './FormTemplate'
 
-function SignUpForm({login, handleuser, user}) {
+function SignUpForm({login, handleuser, user, initials}) {
 const [formData, setFormData] = useState({
   name:"",
   email:"",
+  ID_no: "",
+  phone_no: "",
   password:"",
-  password_confirmation: "",
+ 
 })
+const navigate = useNavigate()
 
 function handleChange(e){
   setFormData({...formData, [e.target.name]: e.target.value})
@@ -29,6 +33,7 @@ function handleClick(e) {
     if(resp.ok){
       resp.json()
       .then(data => handleuser(data))
+      navigate("/")
     }
     else{
       resp.json().then( error => console.log(error.errors));
@@ -36,11 +41,11 @@ function handleClick(e) {
 
   })
   // console.log(user)
- 
+
 
 }
   return (
-    <FormTemplate login={login} user={user}>
+    <FormTemplate login={login} user={user} initials={initials}>
   <form className='flex flex-col  space-y-6' onSubmit={handleClick}>
     <div className='flex flex-col  space-y-4 px-5  form '>
         <input 
@@ -52,6 +57,17 @@ function handleClick(e) {
         type="text" 
         name="email" 
         placeholder="Email" 
+        onChange={handleChange}/>
+         <input 
+        type="text" 
+        name="ID_no" 
+        placeholder="ID number" 
+        onChange={handleChange}/>
+         <input 
+         id='phone'
+        type="tel" 
+        name="phone_no" 
+        placeholder="Phone number (+254 700 000 000)" 
         onChange={handleChange}/>
         <input 
         type="password" 

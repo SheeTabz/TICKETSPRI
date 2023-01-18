@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import NavBar2 from "../components/NavBar2";
 import "./pass.css";
@@ -7,11 +8,15 @@ function FormsPage() {
   const [firstname, setFirstName] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
+
+  const [lastname, setLastName] = useState("");
+
   const [phone, setPhone] = useState("");
   const [identity, setIdentity] = useState("");
   const [payeename, setPayeeName] = useState("");
   const [payeephone, setPayeePhone] = useState("");
   const [mail, setMail] = useState("");
+
   const [selectedseats, setSelectedseats] = useState([1, 3]);
   const [currentForm, setCurrentForm] = useState(0);
   const [submitting, setSubmitting] = useState(false);
@@ -112,6 +117,7 @@ const handleChange = (event, index) => {
   //   }).then();
   //}
 
+
   return (
     <>
       <NavBar2 />
@@ -120,6 +126,7 @@ const handleChange = (event, index) => {
         {/* the right row */}
 
         <div className=" flex   w-1/2 flex-col">
+
           <label className="text-center ">Enter Passenger Details</label>
           {/* form template */}
 
@@ -281,6 +288,7 @@ const handleChange = (event, index) => {
                 </button>
               </form>
             ))}
+
           {/* person paying from */}
           <div className="form-pannels">
             <p>Details of Person Paying</p>
@@ -351,6 +359,7 @@ const handleChange = (event, index) => {
             </button>
           </div>
         </div>
+
         {/* left row */}
         <div className="w-48  border-solid border-2 border-sky-500">
           <div class="flex flex-col">
@@ -392,7 +401,9 @@ const handleChange = (event, index) => {
                           1
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+
                           firstname
+
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           Otto
