@@ -5,68 +5,64 @@ import { cars} from './data'
 import EditForm from './EditForm'
 
 
-function CarCard() {
+function CarCard({saccoBus}) {
 
 
-useEffect(()=> {
-fetch("http://localhost:3000/vehicles")
-.then(res => res.json())   
-.then(data => console.log(data)) 
-
-
-},[])   
-
-function handleDelete(){
-    fetch("http://localhost:3000/vehicles",{
+ 
+console.log(saccoBus)
+function handleDelete(vehicle){
+    fetch(`/vehicles/${vehicle}`,{
         method: "DELETE",
     })
     .then(res => res.json())
     .then(data => console.log(data))
+    console.log(vehicle)
+}
+const [toggle, setToggle] = useState(false)
+function handleClick(){
+    setToggle(!toggle)
 }
 
-function Card({car}){
-    const [toggle, setToggle] = useState(false)
-    function handleClick(){
-        setToggle(!toggle)
-    }
+function Card({car, children}){
+ 
     return (
         <>
         <div className='md:w-full flex md:flex-row flex-col justify-between px-4 py-5  md:items-center shadow-md'>
         <div className='car-det '>
-            <h1>{car.name}</h1>
-            <p>{car.desc}</p>
+            <h1>{car.vehicle_name}</h1>
+            <p>2*2 AC Seats</p>
         </div>
         <div className='car-det'>
-        <h1>{car.no}</h1>
+        <h1>{car.no_of_seats}</h1>
             <p>Seats left</p> 
         </div>
         <div className='flex md:flex-col flex-row justify-between'>
         <div className='car-det'>
-        <h1>{car.from}</h1>
+        <h1>{car.route.From_location}</h1>
         </div>
         <div className='car-det'>
-        <p className='text-cyan-500'>{car.depature}</p>
+        <p className='text-cyan-500'>{car.departure_time}</p>
         </div>
         </div>
         <div className='flex md:flex-col flex-row justify-between'>
         <div className='car-det'>
-        <h1>{car.to}</h1>
+        <h1>{car.route.To_location}</h1>
         </div>
         <div className='car-det'>
-        <p className='text-cyan-500'>{car.arrival}</p>
+        <p className='text-cyan-500'>{car.arrival_time}</p>
         </div>
         </div>
         <div className='car-det'>
             <h1>Price</h1>
-            <p className='font-medium'>KES {car.price}</p>
+            <p className='font-medium'>KES {car.route.Price}</p>
         </div>
         <div className='flex text-2xl space-x-3 text-cyan-500 cursor-pointer'>
             <span className='text-cyan-500' onClick={handleClick}><MdOutlineModeEdit/></span>
-            <span onClick={handleDelete}><RiDeleteBin5Line/></span>
+            <span onClick={()=>handleDelete(car.id)}><RiDeleteBin5Line/></span>
             </div>
         
             </div>
-            {toggle ? <EditForm closeForm={handleClick} details={car}/> : ''}
+            {children}
            
             </>
     )
@@ -74,7 +70,11 @@ function Card({car}){
 
   return (
     <>
-    {cars.map(car => <Card car={car}/>
+    
+    {saccoBus && saccoBus.map(car => 
+    <Card car={car}>
+        {toggle ? <EditForm closeForm={handleClick} saccoBus={car}/> : ''}
+    </Card>
     )}
   
 </>

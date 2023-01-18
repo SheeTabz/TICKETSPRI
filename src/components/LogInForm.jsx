@@ -24,6 +24,8 @@ fetch("/customer/login",
       resp.json()
       .then(data => handleuser(data))
       navigate("/")
+      window.location.reload()
+     
     }
     else{
       resp.json().then( error => console.log(error.errors));

@@ -6,7 +6,7 @@ function RegisteredNavBar({sacco, setSacco}) {
 const navigate = useNavigate()
 
   function handleLogOut(){
-    fetch("http://localhost:3000/sacco/logout",{
+    fetch("/sacco/logout",{
       method: "DELETE"
     })
     .then(resp => resp.json())
