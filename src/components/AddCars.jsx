@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import DashboardTemp from "./DashboardTemp";
@@ -6,13 +7,15 @@ import { storage } from "../firebase";
 import { v4 } from "uuid";
 function AddCars({sacco, setSacco}) {
   const [cars, setCars] = useState("");
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState();
   const [plate, setPlate] = useState("");
   const [seat, setSeat] = useState("");
   const [pickup, setPickup] = useState("");
+  const [route, setRoute] = useState();
   const [drop, setDrop] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [errors, setErrors] = useState("");
   const [price, setPrice] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState("");
@@ -20,6 +23,7 @@ function AddCars({sacco, setSacco}) {
 
   // handle form submit
   const uploadFile = () => {
+    console.log("started");
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -30,67 +34,51 @@ function AddCars({sacco, setSacco}) {
   };
 
   const formData = {
-    cars,
-    desc,
-    plate,
-    seat,
-    pickup,
-    drop,
-    from,
-    to,
-    price,
-    imageUrls,
+    vehicle_name: cars,
+    sacco_id: sacco.id,
+    no_of_seats: seat,
+    route_id:route,
+    departure_time: pickup,
+    arrival_time: drop,
+    image:imageUrls,
   };
-
+// console.log(sacco)
   function handleSubmit(e) {
     e.preventDefault();
     uploadFile();
-    // fetch("/addcars", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     navigate("/home");
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    fetch(`/vehicles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }).then((r) => {
+      if (r.ok) {
+        //  navigate("/saccoBuses");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+
     console.log(formData);
   }
 
   function handlePatch(e) {
     e.preventDefault();
     uploadFile();
-    // fetch("/addcars", {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     navigate("/home");
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+  
   }
 
   return (
     <>
       <DashboardTemp sacco={sacco} setSacco={setSacco}>
-
         <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
-              <button
+            <button
               onClick={handlePatch}
               class="bg-blue-500 hover:bg-blue-700 text-white text-center text-xs md:text-xl f py-1 px-2 xl:md:py-2 xl:md:px-6 md:font-bold xl:py-2 xl:px-4 rounded "
             >
-
               Save
             </button>
           </div>
@@ -116,12 +104,12 @@ function AddCars({sacco, setSacco}) {
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-last-name"
                 >
-                  Description
+                  Number
                 </label>
                 <input
                   class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                   id="grid-last-name"
-                  type="text"
+                  type="number"
                   placeholder="color.... height....."
                   onChange={(e) => setDesc(e.target.value)}
                 />
@@ -145,32 +133,22 @@ function AddCars({sacco, setSacco}) {
                   onChange={(e) => setPlate(e.target.value)}
                 />
               </div>
+
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
-                  for="grid-state"
+                  for="grid-city"
                 >
-                  No. seats
+                  Upload file
                 </label>
-                <div class="relative">
-                  <select
-                    class="block appearance-none w-full bg-white border border-gray-200 text-center text-gray-700 md:py-1 px-2 xl:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                    id="grid-state"
-                    onChange={(e) => setSeat(e.target.value)}
-                  >
-                    <option>37</option>
-                    {/* <option>61</option> */}
-                  </select>
-                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2  text-center text-gray-700">
-                    <svg
-                      class="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-                </div>
+                <input
+                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-city"
+                  type="file"
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
+                />
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
@@ -184,6 +162,7 @@ function AddCars({sacco, setSacco}) {
                   id="grid-zip"
                   type="time"
                   onChange={(e) => setPickup(e.target.value)}
+                  onClick={() => uploadFile()}
                 />
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
@@ -211,13 +190,19 @@ function AddCars({sacco, setSacco}) {
                 >
                   Route (point 1)
                 </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="text"
-                  placeholder="Naivasha "
-                  onChange={(e) => setFrom(e.target.value)}
-                />
+                <select
+                  class=""
+                  aria-label=".form-select-lg example"
+                  name="route"
+                  type="number"
+                  onChange={(e) => setRoute(e.target.value)}
+                >
+                  <option selected>Select route: </option>
+                  <option value={1}>Nairobi - Mombasa</option>
+                  <option value={2}>Kisumu - Nakuru</option>
+                  <option value={3}>Nairobi - Kisumu</option>
+                  <option value={4}>Eldoret - Isiolo</option>
+                </select>
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
@@ -253,18 +238,30 @@ function AddCars({sacco, setSacco}) {
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
-                  for="grid-city"
+                  for="grid-state"
                 >
-                  Upload file
+                  No. seats
                 </label>
-                <input
-                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="file"
-                  onChange={(event) => {
-                    setImageUpload(event.target.files[0]);
-                  }}
-                />
+                <div class="relative">
+                  <select
+                    class="block appearance-none w-full bg-white border border-gray-200 text-center text-gray-700 md:py-1 px-2 xl:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                    id="grid-state"
+                    onChange={(e) => setSeat(e.target.value)}
+                  >
+                    <option></option>
+                    <option value={37}>37</option>
+                    {/* <option>61</option> */}
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2  text-center text-gray-700">
+                    <svg
+                      class="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -282,3 +279,5 @@ function AddCars({sacco, setSacco}) {
 }
 
 export default AddCars;
+
+
