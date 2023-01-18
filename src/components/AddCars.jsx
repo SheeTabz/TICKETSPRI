@@ -4,7 +4,7 @@ import DashboardTemp from "./DashboardTemp";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 import { v4 } from "uuid";
-function AddCars() {
+function AddCars({sacco, setSacco}) {
   const [cars, setCars] = useState("");
   const [desc, setDesc] = useState("");
   const [plate, setPlate] = useState("");
@@ -81,7 +81,7 @@ function AddCars() {
 
   return (
     <>
-      <DashboardTemp>
+      <DashboardTemp sacco={sacco} setSacco={setSacco}>
 
         <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
