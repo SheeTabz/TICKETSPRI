@@ -26,10 +26,11 @@ import ConfirmPage from './pages/ConfirmPage';
 
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState()
   const [sacco, setSacco] = useState({})
   const [vehicles, setVehicles] = useState([])
   const [initials, setInitials] = useState("");
+  
   async function handleuser(user){
       await setUser(user);
   }
@@ -90,7 +91,7 @@ console.log(sacco)
  <Route path="/passengerDetails" element={<FormsPage/>}/>
 
  {/* <Route path="/saccoAccount" element={<Account/>}/> */}
- <Route path="/saccoBuses" element={<CarListPage sacco={sacco} setSacco={setSacco}/>}/>
+ <Route path="/saccoBuses" element={<CarListPage sacco={sacco} setSacco={setSacco} />}/>
  <Route path="/saccoNew" element={<AddCars sacco={sacco} setSacco={setSacco}/>}/>
  <Route path="/account" element={<UserAccount handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
  
