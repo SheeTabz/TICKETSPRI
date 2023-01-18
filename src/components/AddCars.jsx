@@ -21,6 +21,7 @@ function AddCars() {
 
   // handle form submit
   const uploadFile = () => {
+    console.log("started")
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -45,21 +46,21 @@ function AddCars() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    uploadFile()
-      fetch("/saccos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }).then((r) => {
-        if (r.ok) {
-          // navigate("/home");
-        } else {
-          r.json().then((err) => setErrors(err.errors));
-        }
-      })
-    
+    uploadFile();
+    fetch("/saccos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }).then((r) => {
+      if (r.ok) {
+        // navigate("/home");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+
     console.log(formData);
   }
 
@@ -145,32 +146,22 @@ function AddCars() {
                   onChange={(e) => setPlate(e.target.value)}
                 />
               </div>
+
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
-                  for="grid-state"
+                  for="grid-city"
                 >
-                  No. seats
+                  Upload file
                 </label>
-                <div class="relative">
-                  <select
-                    class="block appearance-none w-full bg-white border border-gray-200 text-center text-gray-700 md:py-1 px-2 xl:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                    id="grid-state"
-                    onChange={(e) => setSeat(e.target.value)}
-                  >
-                    <option>37</option>
-                    {/* <option>61</option> */}
-                  </select>
-                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2  text-center text-gray-700">
-                    <svg
-                      class="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-                </div>
+                <input
+                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-city"
+                  type="file"
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
+                />
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
@@ -184,6 +175,7 @@ function AddCars() {
                   id="grid-zip"
                   type="time"
                   onChange={(e) => setPickup(e.target.value)}
+                  onClick={() => uploadFile()}
                 />
               </div>
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
@@ -253,18 +245,30 @@ function AddCars() {
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
-                  for="grid-city"
+                  for="grid-state"
                 >
-                  Upload file
+                  No. seats
                 </label>
-                <input
-                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="file"
-                  onChange={(event) => {
-                    setImageUpload(event.target.files[0]);
-                  }}
-                />
+                <div class="relative">
+                  <select
+                    class="block appearance-none w-full bg-white border border-gray-200 text-center text-gray-700 md:py-1 px-2 xl:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                    id="grid-state"
+                    onChange={(e) => setSeat(e.target.value)}
+                  >
+                    <option></option>
+                    <option value={37}>37</option>
+                    {/* <option>61</option> */}
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2  text-center text-gray-700">
+                    <svg
+                      class="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
