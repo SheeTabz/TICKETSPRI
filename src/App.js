@@ -22,10 +22,12 @@ import DisplaySeats from './components/displaySeat';
 import AddCars from './components/AddCars';
 import UserAccount from './pages/UserAccount';
 import FormsPage from './pages/FormsPage';
+import ConfirmPage from './pages/ConfirmPage';
 
 
 function App() {
   const [user, setUser] = useState({})
+  const [sacco, setSacco] = useState({})
   const [vehicles, setVehicles] = useState([])
   const [initials, setInitials] = useState("");
   async function handleuser(user){
@@ -74,23 +76,24 @@ function handleSearch(loc){
   })
 }
   console.log(vehicles)
-
+console.log(sacco)
   return (
 <BrowserRouter>
     <div className="App">
  <Routes>
   <Route path="/"   element={ <LandingPage user={user} setUser={setUser} handleSearch={handleSearch} initials={initials}/>}  />
  <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
- <Route path="/saccolog" element={<SaccoLogiPage/>}/>
+ <Route path="/saccolog" element={<SaccoLogiPage setSacco={setSacco}/>}/>
  <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/seats" element={<DisplaySeats/>}/>
- {/* <Route path="/confirmation" element={<ResponsivePage/>}/> */}
+ <Route path="/confirmation" element={ <ConfirmPage user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/passengerDetails" element={<FormsPage/>}/>
- 
+
  {/* <Route path="/saccoAccount" element={<Account/>}/> */}
- <Route path="/saccoBuses" element={<CarListPage/>}/>
- <Route path="/saccoNew" element={<AddCars/>}/>
- <Route path="/account" element={<UserAccount user={user} setUser={setUser} initials={initials}/>}/>
+ <Route path="/saccoBuses" element={<CarListPage sacco={sacco} setSacco={setSacco}/>}/>
+ <Route path="/saccoNew" element={<AddCars sacco={sacco} setSacco={setSacco}/>}/>
+ <Route path="/account" element={<UserAccount handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
+ 
  
 
  
