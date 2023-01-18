@@ -2,7 +2,7 @@
   "name": "ticket-spri",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://ticketspri-com.onrender.com/",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
     "@testing-library/jest-dom": "^5.16.5",
