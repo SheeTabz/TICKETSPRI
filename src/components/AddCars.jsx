@@ -24,6 +24,7 @@ function AddCars({sacco, setSacco}) {
   // handle form submit
   const uploadFile = () => {
     console.log("started");
+
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -46,7 +47,9 @@ function AddCars({sacco, setSacco}) {
   function handleSubmit(e) {
     e.preventDefault();
     uploadFile();
+
     fetch(`/vehicles`, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +57,9 @@ function AddCars({sacco, setSacco}) {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
+
         //  navigate("/saccoBuses");
+
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -66,12 +71,27 @@ function AddCars({sacco, setSacco}) {
   function handlePatch(e) {
     e.preventDefault();
     uploadFile();
-  
+    // fetch("/saccos", {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // }).then((r) => {
+    //   if (r.ok) {
+    //     navigate("/home");
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
+
   }
 
   return (
     <>
+
       <DashboardTemp sacco={sacco} setSacco={setSacco}>
+
         <div className="flex flex-col  h-screen   ">
           <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
