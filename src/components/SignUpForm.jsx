@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import FormTemplate from './FormTemplate'
 
 function SignUpForm({login, handleuser, user, initials}) {
@@ -10,6 +11,7 @@ const [formData, setFormData] = useState({
   password:"",
  
 })
+const navigate = useNavigate()
 
 function handleChange(e){
   setFormData({...formData, [e.target.name]: e.target.value})
@@ -31,6 +33,7 @@ function handleClick(e) {
     if(resp.ok){
       resp.json()
       .then(data => handleuser(data))
+      navigate("/")
     }
     else{
       resp.json().then( error => console.log(error.errors));

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import FormTemplate from './FormTemplate'
+import {useNavigate} from 'react-router-dom'
 
 function LogInForm({signup, handleuser, user, setUser, initials}) {
 const [formData, setFormData] = useState({
 email: '',
 password: '',
 })
-
+const navigate = useNavigate()
 function handleSubmit(e){
   e.preventDefault()
 fetch("/customer/login",
@@ -22,6 +23,7 @@ fetch("/customer/login",
     if(resp.ok){
       resp.json()
       .then(data => handleuser(data))
+      navigate("/")
     }
     else{
       resp.json().then( error => console.log(error.errors));

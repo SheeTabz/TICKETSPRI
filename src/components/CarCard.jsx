@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {MdOutlineModeEdit} from 'react-icons/md'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { cars} from './data'
@@ -7,6 +7,22 @@ import EditForm from './EditForm'
 
 function CarCard() {
 
+
+useEffect(()=> {
+fetch("http://localhost:3000/vehicles")
+.then(res => res.json())   
+.then(data => console.log(data)) 
+
+
+},[])   
+
+function handleDelete(){
+    fetch("http://localhost:3000/vehicles",{
+        method: "DELETE",
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
 
 function Card({car}){
     const [toggle, setToggle] = useState(false)
@@ -46,7 +62,7 @@ function Card({car}){
         </div>
         <div className='flex text-2xl space-x-3 text-cyan-500 cursor-pointer'>
             <span className='text-cyan-500' onClick={handleClick}><MdOutlineModeEdit/></span>
-            <span><RiDeleteBin5Line/></span>
+            <span onClick={handleDelete}><RiDeleteBin5Line/></span>
             </div>
         
             </div>

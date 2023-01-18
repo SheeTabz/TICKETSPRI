@@ -23,6 +23,7 @@ function Nav3({user, setUser, initials}) {
             {user  ?  
           <LoggedinNav  setUser={setUser} initials={initials}/>
             :<WhiteButton/>}
+            
            
         </div>
     </div>
