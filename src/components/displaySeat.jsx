@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./displayseat.css";
-function DisplaySeats() {
+import Footer from "./Footer";
+import NavBar2 from "./NavBar2";
+function DisplaySeats({  user, setUser,initials}) {
   // ++++++++++-------------constants--------------++++++++++++=
   const [users, setUsers] = useState([]);
   const [waited, setWaited] = useState([]);
@@ -85,7 +87,11 @@ function DisplaySeats() {
   usedData();
   const [data, setData] = useState(null);
   function handleNavigate() {
+    if(user){
     navigate("/passengerDetails");
+    } else {
+      navigate("/login")
+    }
   }
 
   const handleClick = (index) => {
@@ -108,6 +114,7 @@ function DisplaySeats() {
 
   return (
     <>
+    <NavBar2 user={user} setUser={setUser} initials={initials} />
       {/* parent div */}
       {/* <button className="bg-red-200" onClick={handleClear}>
         Clear All Data
@@ -790,6 +797,7 @@ function DisplaySeats() {
           </div> */}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

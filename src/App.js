@@ -31,7 +31,8 @@ function App() {
   const [sacco, setSacco] = useState({})
   const [vehicles, setVehicles] = useState([])
   const [initials, setInitials] = useState("");
-  
+
+
   async function handleuser(user){
       await setUser(user);
   }
@@ -68,7 +69,7 @@ function handleSearch(loc){
     if(res.ok){
       res.json()
       .then(data => {
-       data.find(car => car.route_id === Number(loc) ? setVehicles([car]) : setVehicles([]))
+       data.find(car => car.route_id === Number(loc) ? setVehicles([car]) : '')
      
       })
     }
@@ -87,9 +88,9 @@ console.log(sacco)
  <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/saccolog" element={<SaccoLogiPage setSacco={setSacco}/>}/>
  <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials} vehicles={vehicles} setVehicles={setVehicles} handleSearch={handleSearch}/>}/>
- <Route path="/seats" element={<DisplaySeats/>}/>
+ <Route path="/seats" element={<DisplaySeats  user={user}/>}/>
  <Route path="/confirmation" element={ <ConfirmPage user={user} setUser={setUser} initials={initials}/>}/>
- <Route path="/passengerDetails" element={<FormsPage/>}/>
+ <Route path="/passengerDetails" element={<FormsPage user={user} setUser={setUser} initials={initials}/>}/>
 
  <Route path="/saccoAccount" element={ <SaccoAcc sacco={sacco} setSacco={setSacco}/>}/>
 
