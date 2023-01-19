@@ -7,41 +7,105 @@ import CarListPage from './pages/CarListPage';
 import EditForm from './components/EditForm';
 import LandingPage from './pages/LandingPage';
 import LogInPage from './pages/LogInPage';
+
+import { useEffect, useState } from 'react';
+
 import BusPage from './pages/BusesPage';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-import "bootstrap/dist/js/bootstrap.min.js";
+
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import BusPages from './pages/BusesPage';
 import DisplaySeats from './components/displaySeat';
-import ResponsivePage from './components/Passengers/Confirmation';
-import Services from './components/Passengers/Passenger';
-import Account from './components/Passengers/Account';
+// import ResponsivePage from './components/Passengers/Confirmation';
+// import Services from './components/Passengers/Passenger';
+// import Account from './components/Passengers/Account';
 import AddCars from './components/AddCars';
-// import Payment from "./components/Passengers/Payment";
+import UserAccount from './pages/UserAccount';
+import FormsPage from './pages/FormsPage';
+import ConfirmPage from './pages/ConfirmPage';
+import SaccoAcc from './components/SaccoAcc';
+
+
 function App() {
+  const [user, setUser] = useState()
+  const [sacco, setSacco] = useState({})
+  const [vehicles, setVehicles] = useState([])
+  const [initials, setInitials] = useState("");
+  
+  async function handleuser(user){
+      await setUser(user);
+  }
+useEffect(() => {
+   fetch("/customer/me")
+  .then(res => {
+    if(res.ok){
+      res.json().then(data => {
+        setUser(data)
+        console.log(data);
+        const words = data.name.split(" ");
+        const firstName = words[0];
+        const lastName = words[1];
+        console.log(setInitials(getInitials(firstName, lastName)));
+      })
+    }
+    else{
+      res.json().then(err => console.log(err.errors))
+    }
+  })
+  
+
+},[])
+
+ function getInitials(firstName, lastName) {
+  const initials = firstName.substring(0, 1) + lastName.substring(0, 1);
+  return initials;
+}
+console.log(initials)
+console.log(user)
+function handleSearch(loc){
+  fetch("/vehicles")
+  .then(res =>{
+    if(res.ok){
+      res.json()
+      .then(data => {
+       data.find(car => car.route_id === Number(loc) ? setVehicles([car]) : setVehicles([]))
+     
+      })
+    }
+    else{
+      res.json().then(err => console.log(err.error))
+    }
+  })
+}
+  console.log(vehicles)
+console.log(sacco)
   return (
 <BrowserRouter>
     <div className="App">
  <Routes>
-  <Route path="/"   element={ <LandingPage/>}  />
- <Route path="/login" element={<LogInPage/>}/>
- <Route path="/saccolog" element={<SaccoLogiPage/>}/>
- <Route path="/bookTicket" element={<BusPages/>}/>
+  <Route path="/"   element={ <LandingPage user={user} setUser={setUser} handleSearch={handleSearch} initials={initials}/>}  />
+ <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
+ <Route path="/saccolog" element={<SaccoLogiPage setSacco={setSacco}/>}/>
+ <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials} vehicles={vehicles} setVehicles={setVehicles} handleSearch={handleSearch}/>}/>
  <Route path="/seats" element={<DisplaySeats/>}/>
- <Route path="/confirmation" element={<ResponsivePage/>}/>
- <Route path="/passengerDetails" element={<Services/>}/>
- <Route path="/saccoAccount" element={<Account/>}/>
- <Route path="/saccoBuses" element={<CarListPage/>}/>
- <Route path="/saccoNew" element={<AddCars/>}/>
+ <Route path="/confirmation" element={ <ConfirmPage user={user} setUser={setUser} initials={initials}/>}/>
+ <Route path="/passengerDetails" element={<FormsPage/>}/>
+
+ <Route path="/saccoAccount" element={ <SaccoAcc sacco={sacco} setSacco={setSacco}/>}/>
+
+ <Route path="/saccoBuses" element={<CarListPage sacco={sacco} setSacco={setSacco} />}/>
+ <Route path="/saccoNew" element={<AddCars sacco={sacco} setSacco={setSacco}/>}/>
+ <Route path="/account" element={<UserAccount handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
  
  
+
  
  
-  {/* <BusPage/> */}
+
   </Routes>
     </div>
     </BrowserRouter>
+
   );
 }
 

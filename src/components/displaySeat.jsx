@@ -1,5 +1,7 @@
 import { waitForElementToBeRemoved } from "@testing-library/react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./displayseat.css";
 function DisplaySeats() {
   // ++++++++++-------------constants--------------++++++++++++=
@@ -10,9 +12,11 @@ function DisplaySeats() {
   const [checked, setChecked] = useState(false);
   const [boolean, setBoolean] = useState(false);
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
+
   //********-----------functions-----------****************
-  function deleteItem(id) {
-    // fetch(`/songs/${id}`, {
+  function deleteItem(item) {
+    // fetch(`/seats/${id}`, {
     //   method: "PATCH",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -21,29 +25,45 @@ function DisplaySeats() {
     //     selected: false,
     //   }),
     // }).then(
-    fetch(`/musics/${id}`, {
+    fetch(`/selectedseats/${item}`, {
       method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          setItems(items.filter((item) => item.id !== id));
-        } else {
-          // handle errors
-          console.log("Error Occured");
-        }
-      })
-      .then(() => fetchMapped());
+    }).then((response) => {
+      if (response.ok) {
+        setItems(items.filter((n) => n !== item));
+      } else {
+        // handle errors
+        console.log("Error Occured");
+      }
+    });
+    //.then(() => fetchMapped());
     //);
   }
+  const handleClear = () => {
+    fetch("selectedseats/clearAll", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // update the state or display a success message
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   function fetchMapped() {
-    fetch("musics")
+    fetch("/selectedseats")
       .then((response) => response.json())
       .then((data) => setItems(data));
   }
   // <<<<------------------fecth request----------------->>>>>>>>>
   useEffect(() => {
-    fetch("songs")
+    fetch("/seats")
       .then((response) => response.json())
       .then((data) => setUsers(data));
     fetchMapped();
@@ -63,37 +83,36 @@ function DisplaySeats() {
   }
 
   usedData();
+  const [data, setData] = useState(null);
+  function handleNavigate() {
+    navigate("/passengerDetails");
+  }
 
   const handleClick = (index) => {
-    // fetch(`/songs/${index + 1}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     selected: true,
-    //   }),
-    // }).then(
-    fetch(`/songs/${index + 1}`)
+    fetch(`/seats/${index + 1}`)
       .then((response) => response.json())
       .then((data) => {
-        fetch("musics", {
+        let send = { seat_no: data.seat_no };
+
+        fetch("/selectedseats", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(send),
         })
           .then((response) => response.json())
-          // .then((data) => console.log(data));
           .then(() => fetchMapped());
       });
-    //);
   };
 
   return (
     <>
       {/* parent div */}
+      {/* <button className="bg-red-200" onClick={handleClear}>
+        Clear All Data
+      </button> */}
+
       <div className="information flex items-center	w-1/5	p-2 bg-gray-100  text-sm">
         <p className="text-sm md:text-base">
           Select a seat by taping on the grey seat buttons. You may select as
@@ -730,21 +749,21 @@ function DisplaySeats() {
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {items.map((item, i) => (
                 <tr
                   className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                  key={item.id}
+                  key={i}
                 >
                   <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    {item.name}
+                    {item}
                   </td>
                   <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                    {`${item.name}00`}
+                    {`${item}`}
                   </td>
                   <td className="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
                     <button
                       className="inline-block px-3 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight  rounded hover:bg-black hover:bg-opacity-5  focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                      onClick={() => deleteItem(item.id)}
+                      onClick={() => deleteItem(item)}
                     >
                       Remove
                     </button>
@@ -756,6 +775,7 @@ function DisplaySeats() {
           <button
             type="button"
             className="mb-2 w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            onClick={handleNavigate}
           >
             Proceed to Booking
           </button>

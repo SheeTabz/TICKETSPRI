@@ -1,27 +1,78 @@
-import { useState } from "react";
-import DashboardTemp from "./DashboardTemp";
 
-function AddCars() {
+import { useState } from "react";
+
+import DashboardTemp from "./DashboardTemp";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 } from "uuid";
+function AddCars({sacco, setSacco}) {
   const [cars, setCars] = useState("");
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState();
   const [plate, setPlate] = useState("");
   const [seat, setSeat] = useState("");
   const [pickup, setPickup] = useState("");
+  const [route, setRoute] = useState();
   const [drop, setDrop] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [errors, setErrors] = useState("");
   const [price, setPrice] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState("");
+  const imagesListRef = ref(storage, "images/");
 
   // handle form submit
+  const uploadFile = () => {
+    console.log("started");
 
-  const formData = { cars, desc, plate, seat, pickup, drop, from, to, price };
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls(url);
+      });
+    });
+  };
 
+  const formData = {
+    vehicle_name: cars,
+    sacco_id: sacco.id,
+    no_of_seats: seat,
+    route_id:route,
+    departure_time: pickup,
+    arrival_time: drop,
+    image:imageUrls,
+  };
+// console.log(sacco)
   function handleSubmit(e) {
-    console.log(formData);
     e.preventDefault();
-    // fetch("/addcars", {
-    //   method: "POST",
+    uploadFile();
+
+    fetch(`/vehicles`, {
+
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }).then((r) => {
+      if (r.ok) {
+
+        //  navigate("/saccoBuses");
+
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+
+    console.log(formData);
+  }
+
+  function handlePatch(e) {
+    e.preventDefault();
+    uploadFile();
+    // fetch("/saccos", {
+    //   method: "PATCH",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
@@ -33,46 +84,52 @@ function AddCars() {
     //     r.json().then((err) => setErrors(err.errors));
     //   }
     // });
+
   }
 
   return (
     <>
-      <DashboardTemp>
+
+      <DashboardTemp sacco={sacco} setSacco={setSacco}>
+
         <div className="flex flex-col  h-screen   ">
-          <div className="flex justify-between  border-b-2 border-gray-200 p-4 text-center">
+          <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
+            <button
+              onClick={handlePatch}
+              class="bg-blue-500 hover:bg-blue-700 text-white text-center text-xs md:text-xl f py-1 px-2 xl:md:py-2 xl:md:px-6 md:font-bold xl:py-2 xl:px-4 rounded "
+            >
               Save
             </button>
           </div>
-          <form class="w-full p-5 ">
-            <div class="flex flex-wrap -mx-3 mb-6 p-2   ">
-              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
+          <form class="w-full md:p-2 ">
+            <div class="flex flex-wrap md:mx-3 md:mb-6 p-2   ">
+              <div class="w-full xl:w-1/2 px-3  xl:mb-0 ">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
+                  class="block uppercase tracking-wide text-center  text-gray-700 text-xs md:text-sm font-regular xl:mb-2 "
                   for="grid-first-name"
                 >
                   Car Name
                 </label>
                 <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500 "
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500 "
                   id="grid-first-name"
                   type="text"
                   placeholder="Scania"
                   onChange={(e) => setCars(e.target.value)}
                 />
               </div>
-              <div class="w-full md:w-1/2 px-3">
+              <div class="w-full xl:w-1/2 px-3 xl:mb-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-last-name"
                 >
-                  Description
+                  Number
                 </label>
                 <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                   id="grid-last-name"
-                  type="text"
+                  type="number"
                   placeholder="color.... height....."
                   onChange={(e) => setDesc(e.target.value)}
                 />
@@ -80,39 +137,142 @@ function AddCars() {
             </div>
 
             {/* 2nd row */}
-            <div class="flex flex-wrap -mx-3 mb-7 p-2">
-              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0 ">
+            <div class="flex flex-wrap md:-mx-3 md:mb-7 p-2">
+              <div class="w-full  xl:w-1/4 px-3 mb-1  xl:mb-0 ">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  class="block uppercase tracking-wide text-center  text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-city"
                 >
                   Reg no.
                 </label>
                 <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                   id="grid-city"
                   type="text"
                   placeholder="K*** "
                   onChange={(e) => setPlate(e.target.value)}
                 />
               </div>
-              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-city"
+                >
+                  Upload file
+                </label>
+                <input
+                  class=" appearance-none block w-full  text-xs text-gray-700 border border-gray-200 rounded py-3 px-2 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-city"
+                  type="file"
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
+                />
+              </div>
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-zip"
+                >
+                  Pick-up time
+                </label>
+                <input
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-zip"
+                  type="time"
+                  onChange={(e) => setPickup(e.target.value)}
+                  onClick={() => uploadFile()}
+                />
+              </div>
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-zip"
+                >
+                  Drop-off time
+                </label>
+                <input
+                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-zip"
+                  type="time"
+                  onChange={(e) => setDrop(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* 3rd row */}
+            <div class="flex flex-wrap md:-mx-3 md:mb-7 p-2">
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-city"
+                >
+                  Route (point 1)
+                </label>
+                <select
+                  class=""
+                  aria-label=".form-select-lg example"
+                  name="route"
+                  type="number"
+                  onChange={(e) => setRoute(e.target.value)}
+                >
+                  <option selected>Select route: </option>
+                  <option value={1}>Nairobi - Mombasa</option>
+                  <option value={2}>Kisumu - Nakuru</option>
+                  <option value={3}>Nairobi - Kisumu</option>
+                  <option value={4}>Eldoret - Isiolo</option>
+                </select>
+              </div>
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-city"
+                >
+                  Route (point 2)
+                </label>
+                <input
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-city"
+                  type="text"
+                  placeholder="Naivasha "
+                  onChange={(e) => setTo(e.target.value)}
+                />
+              </div>
+
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
+                  for="grid-zip"
+                >
+                  Price:
+                </label>
+                <input
+                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                  id="grid-zip"
+                  type="number"
+                  placeholder="Sh: 1,020"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-state"
                 >
                   No. seats
                 </label>
                 <div class="relative">
                   <select
-                    class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                    class="block appearance-none w-full bg-white border border-gray-200 text-center text-gray-700 md:py-1 px-2 xl:py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                     id="grid-state"
                     onChange={(e) => setSeat(e.target.value)}
                   >
-                    <option>37</option>
-                    <option>61</option>
+                    <option></option>
+                    <option value={37}>37</option>
+                    {/* <option>61</option> */}
                   </select>
-                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2  text-center text-gray-700">
                     <svg
                       class="fill-current h-4 w-4"
                       xmlns="http://www.w3.org/2000/svg"
@@ -123,89 +283,11 @@ function AddCars() {
                   </div>
                 </div>
               </div>
-              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
-                >
-                  Pick-up time
-                </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-zip"
-                  type="time"
-                  onChange={(e) => setPickup(e.target.value)}
-                />
-              </div>
-              <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
-                >
-                  Drop-off time
-                </label>
-                <input
-                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-zip"
-                  type="time"
-                  onChange={(e) => setDrop(e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* 3rd row */}
-            <div class="flex flex-wrap -mx-3 mb-12 p-2">
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-city"
-                >
-                  Route (point 1)
-                </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="text"
-                  placeholder="Naivasha "
-                  onChange={(e) => setFrom(e.target.value)}
-                />
-              </div>
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-city"
-                >
-                  Route (point 2)
-                </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-city"
-                  type="text"
-                  placeholder="Naivasha "
-                  onChange={(e) => setTo(e.target.value)}
-                />
-              </div>
-
-              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
-                >
-                  Price:
-                </label>
-                <input
-                  class="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                  id="grid-zip"
-                  type="number"
-                  placeholder="Sh: 1,020"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </div>
             </div>
 
             <button
               onClick={handleSubmit}
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  mt-5 block mx-auto"
+              class="mb-2 w-full  inline-block px-4 py-2.5 bg-blue-600 text-white font-regular text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >
               Add
             </button>
@@ -217,3 +299,5 @@ function AddCars() {
 }
 
 export default AddCars;
+
+
