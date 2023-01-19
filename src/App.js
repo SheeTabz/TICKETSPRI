@@ -23,6 +23,7 @@ import AddCars from './components/AddCars';
 import UserAccount from './pages/UserAccount';
 import FormsPage from './pages/FormsPage';
 import ConfirmPage from './pages/ConfirmPage';
+import SaccoAcc from './components/SaccoAcc';
 
 
 function App() {
@@ -67,7 +68,7 @@ function handleSearch(loc){
     if(res.ok){
       res.json()
       .then(data => {
-       data.find(car => car.route_id === Number(loc) ? setVehicles([...vehicles, car]) : alert('Sorry, no available vehicles for that route at the moment'));
+       data.find(car => car.route_id === Number(loc) ? setVehicles([car]) : setVehicles([]))
      
       })
     }
@@ -85,12 +86,13 @@ console.log(sacco)
   <Route path="/"   element={ <LandingPage user={user} setUser={setUser} handleSearch={handleSearch} initials={initials}/>}  />
  <Route path="/login" element={<LogInPage handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/saccolog" element={<SaccoLogiPage setSacco={setSacco}/>}/>
- <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials}/>}/>
+ <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials} vehicles={vehicles} setVehicles={setVehicles} handleSearch={handleSearch}/>}/>
  <Route path="/seats" element={<DisplaySeats/>}/>
  <Route path="/confirmation" element={ <ConfirmPage user={user} setUser={setUser} initials={initials}/>}/>
  <Route path="/passengerDetails" element={<FormsPage/>}/>
 
- {/* <Route path="/saccoAccount" element={<Account/>}/> */}
+ <Route path="/saccoAccount" element={ <SaccoAcc sacco={sacco} setSacco={setSacco}/>}/>
+
  <Route path="/saccoBuses" element={<CarListPage sacco={sacco} setSacco={setSacco} />}/>
  <Route path="/saccoNew" element={<AddCars sacco={sacco} setSacco={setSacco}/>}/>
  <Route path="/account" element={<UserAccount handleuser={handleuser} user={user} setUser={setUser} initials={initials}/>}/>

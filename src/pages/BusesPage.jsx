@@ -18,6 +18,7 @@ function BusPages({
       .then((response) => response.json())
       .then((data) => setVehicles(data));
   }, []);
+  console.log(vehicles)
   return (
     <>
       <NavBar2 user={user} setUser={setUser} initials={initials} />

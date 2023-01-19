@@ -1,11 +1,21 @@
 import React from 'react'
 import {GrFormAdd} from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import NavBar2 from './NavBar2'
 import RegisteredNavBar from './RegisteredNavBar'
 
 
 function UserDashboard({children,user, setUser, initials}) {
+const navigate = useNavigate()
+  function handleDelete(){
+    fetch(`/cusstomers/${user.id}`,{
+      method: "DELETE"
+    })
+    .then(resp => resp.json())
+    .then(setUser(null))
+    navigate("/")
+      }
   return (
     <>
     <NavBar2 user={user} setUser={setUser} initials={initials}/>
@@ -14,16 +24,16 @@ function UserDashboard({children,user, setUser, initials}) {
        <div class=" py-4 px-3 lg:bg-gray-100 rounded ">
           <ul class="lg:space-y-2 dashboard flex lg:flex-col flex-row ">
              <li className="">
-                 <span class="ml-3">Profile</span>
+                 <span class="ml-3 cursor-pointer">Profile</span>
             
              </li>
              <li className="">
-                 <span class="ml-3">Booking History</span>
+                 <span class="ml-3 cursor-pointer">Booking History</span>
             
              </li>
              
              <li className="">
-                 <span class="ml-3 text-red-500">Delete account</span>
+                 <span class="ml-3 text-red-500  cursor-pointer" onClick={handleDelete}>Delete account</span>
                 
             
              </li>

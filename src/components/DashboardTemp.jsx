@@ -24,6 +24,15 @@ function DashboardTemp({children, sacco, setSacco}) {
      },[])
 console.log(sacco)
 
+function handleDelete(){
+  fetch(`/saccos/${sacco.id}`,{
+    method: "DELETE"
+  })
+  .then(resp => resp.json())
+  .then(setSacco(null))
+  navigate("/")
+    }
+
 // function handleLogOut(){
 
 //     fetch("/sacco/logout",{
@@ -43,25 +52,25 @@ console.log(sacco)
           <ul class="lg:space-y-2 dashboard flex lg:flex-col flex-row ">
             
              <li className="">
-             <Link to="/saccoAccont">
-                 <span class="ml-3">Account</span>
+             <Link to="/saccoAccount">
+                 <span class="ml-3 cursor-pointer">Account</span>
                  </Link>
              </li>
             
 
              <li className="">
                 <Link to="/saccoBuses">
-                 <span class="ml-3">Car List</span>
+                 <span class="ml-3 cursor-pointer">Car List</span>
                  </Link>
              </li>
              <li >
                 <Link to="/saccoNew" className="flex w-full justify-between">
-                 <span class="ml-3">Add Car</span>
+                 <span class="ml-3 cursor-pointer" >Add Car</span>
                  <GrFormAdd className='text-2xl'/>
                  </Link>
              </li>
              <li className="" >
-                 <span class="ml-3 text-red-500">Delete account</span>
+                 <span class="ml-3 text-red-500 cursor-pointer" onClick={handleDelete}>Delete account</span>
                 
             
              </li>

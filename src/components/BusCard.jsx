@@ -40,9 +40,11 @@ function BusCard({ bus, key, image, depature, arrival, seats, price }) {
         {/* div holding price and button */}
         <div className=" flex flex-col justify-evenly">
           <h5>{`${price}`}</h5>
-          <button className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 ">
+          <Link to="/seats">
+          <button className="bg-cyan-400 hover:bg-cyan-600 rounded py-1.5 px-7 " >
             Select
           </button>
+          </Link>
         </div>
       </div>
       {/* drop down */}

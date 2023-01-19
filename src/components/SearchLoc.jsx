@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {VscArrowSwap} from 'react-icons/vsc'
+import { useNavigate } from 'react-router-dom'
 
 function SearchLoc({handleSearch}) {
     const [formData, setFormData] = useState({
@@ -7,9 +8,11 @@ function SearchLoc({handleSearch}) {
         departure: '',
         arrival: ''
     })
+    const navigate = useNavigate()
     function handleSubmit(e){
         e.preventDefault()
         handleSearch(formData.route)
+        navigate('/bookTicket')
     }
     function handleChange(e){
         setFormData({...formData, [e.target.name]: e.target.value})
