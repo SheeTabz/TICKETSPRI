@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import NavBar2 from "../components/NavBar2";
 import "./pass.css";
 
-function FormsPage() {
+function FormsPage({ user,
+  setUser,
+  initials}) {
   // const navigate = useNavigate("");
   const [firstname, setFirstName] = useState("");
   const [gender, setGender] = useState("");
@@ -17,7 +19,7 @@ function FormsPage() {
   const [payeephone, setPayeePhone] = useState("");
   const [mail, setMail] = useState("");
 
-  const [selectedseats, setSelectedseats] = useState([1, 3]);
+  const [selectedseats, setSelectedseats] = useState();
   const [currentForm, setCurrentForm] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState([]);
@@ -50,16 +52,19 @@ function FormsPage() {
   // }
 
   // handle submit
-  // fetch("/selectedseats")
-  //   .then((response) => response.json())
-  //   .then((data) => setSelectedseats(data));
+ 
 
   useEffect(() => {
-    if (submitting) {
-      handleSubmit();
-    }
-  }, [submitting, currentForm]);
-
+    // if (submitting) {
+    //   handleSubmit();
+    // }
+    fetch("/selectedseats")
+    .then((response) => response.json())
+    .then((data) => setSelectedseats(data));
+  }, 
+  []
+  );
+console.log(selectedseats)
   async function handleSubmit() {
     // gather data for the current form
     const currentFormData = formData[currentForm];
@@ -85,13 +90,13 @@ function FormsPage() {
   }
 
 const handleChange = (event, index) => {
-    if(!formData[index]) setFormData(prevData => [...prevData, {}]);
-    const { name, value } = event.target;
-    setFormData(prevData => {
-      const newData = [...prevData];
-      newData[index] = { ...newData[index], [name]: value };
-      return newData;
-    });
+    // if(!formData[index]) setFormData(prevData => [...prevData, {}]);
+    // const { name, value } = event.target;
+    // setFormData(prevData => {
+    //   const newData = [...prevData];
+    //   newData[index] = { ...newData[index], [name]: value };
+    //   return newData;
+    // });
   };
   // let data = {
   //   firstname,
@@ -120,7 +125,7 @@ const handleChange = (event, index) => {
 
   return (
     <>
-      <NavBar2 />
+      <NavBar2 user={user} setUser={setUser} initials={initials}/>
       {/* this is the overall parent div */}
       <div className="flex justify-around  ">
         {/* the right row */}

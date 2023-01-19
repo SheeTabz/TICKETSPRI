@@ -9,9 +9,9 @@ function ConfirmPage({user, setUser, initials}) {
     <NavBar2 user={user} setUser={setUser} initials={initials}/>
     <div className=''>
       <BookingCard/>  
+      {/* <BookingCard/>  
       <BookingCard/>  
-      <BookingCard/>  
-      <BookingCard/>
+      <BookingCard/> */}
     </div>
     <Footer/>
     </>
