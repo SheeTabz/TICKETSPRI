@@ -23,7 +23,7 @@ function BusPages({
     <>
       <NavBar2 user={user} setUser={setUser} initials={initials} />
       <ModifyLoc handleSearch={handleSearch} />
-      <div className="space-y-8">
+      <div className=" space-x-8  flex flex-col ">
         {vehicles.map((bus) => (
           <BusCard
             key={bus.id}

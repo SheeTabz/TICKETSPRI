@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import NavBar2 from "../components/NavBar2";
 import "./pass.css";
 
@@ -90,13 +91,13 @@ console.log(selectedseats)
   }
 
 const handleChange = (event, index) => {
-    // if(!formData[index]) setFormData(prevData => [...prevData, {}]);
-    // const { name, value } = event.target;
-    // setFormData(prevData => {
-    //   const newData = [...prevData];
-    //   newData[index] = { ...newData[index], [name]: value };
-    //   return newData;
-    // });
+    if(!formData[index]) setFormData(prevData => [...prevData, {}]);
+    const { name, value } = event.target;
+    setFormData(prevData => {
+      const newData = [...prevData];
+      newData[index] = { ...newData[index], [name]: value };
+      return newData;
+    });
   };
   // let data = {
   //   firstname,
@@ -355,13 +356,14 @@ const handleChange = (event, index) => {
               By clicking on "Make Payment" below, I agree to the Terms and
               Conditions
             </p>
-
+<Link to="/confirmation">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
               PROCEED TO BOOK
             </button>
+            </Link>
           </div>
         </div>
 
