@@ -31,7 +31,7 @@ function App() {
   const [sacco, setSacco] = useState({})
   const [vehicles, setVehicles] = useState([])
   const [initials, setInitials] = useState("");
-
+const [formDetails, setFormDetails] = useState()
 
   async function handleuser(user){
       await setUser(user);
@@ -90,7 +90,7 @@ console.log(sacco)
  <Route path="/bookTicket" element={<BusPages user={user} setUser={setUser} initials={initials} vehicles={vehicles} setVehicles={setVehicles} handleSearch={handleSearch}/>}/>
  <Route path="/seats" element={<DisplaySeats  user={user}/>}/>
  <Route path="/confirmation" element={ <ConfirmPage user={user} setUser={setUser} initials={initials}/>}/>
- <Route path="/passengerDetails" element={<FormsPage user={user} setUser={setUser} initials={initials}/>}/>
+ <Route path="/passengerDetails" element={<FormsPage user={user} setUser={setUser} initials={initials} setFormDetails={setFormDetails}/>}/>
 
  <Route path="/saccoAccount" element={ <SaccoAcc sacco={sacco} setSacco={setSacco}/>}/>
 
