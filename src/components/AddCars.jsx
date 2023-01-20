@@ -93,7 +93,7 @@ function AddCars({sacco, setSacco}) {
       <DashboardTemp sacco={sacco} setSacco={setSacco}>
 
         <div className="flex flex-col  h-screen   ">
-          <div className="flex justify-between md:justify-around  border-b-2 border-gray-200 p-1 md:p-5 text-center">
+          <div className="flex justify-between border-b-2 border-gray-200 p-1 md:p-5 text-center">
             <h1 className=" text-3xl font-medium">Add Cars</h1>
             <button
               onClick={handlePatch}
@@ -211,7 +211,7 @@ function AddCars({sacco, setSacco}) {
                   Route (point 1)
                 </label>
                 <select
-                  class=""
+                  class="appearance-none block w-full  bg-white text-gray-700 border border-gray-200 rounded md:py-1 px-2 xl:py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                   aria-label=".form-select-lg example"
                   name="route"
                   type="number"
@@ -224,7 +224,7 @@ function AddCars({sacco, setSacco}) {
                   <option value={4}>Eldoret - Isiolo</option>
                 </select>
               </div>
-              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+              {/* <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-city"
@@ -238,9 +238,9 @@ function AddCars({sacco, setSacco}) {
                   placeholder="Naivasha "
                   onChange={(e) => setTo(e.target.value)}
                 />
-              </div>
+              </div> */}
 
-              <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
+              {/* <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"
                   for="grid-zip"
@@ -254,7 +254,7 @@ function AddCars({sacco, setSacco}) {
                   placeholder="Sh: 1,020"
                   onChange={(e) => setPrice(e.target.value)}
                 />
-              </div>
+              </div> */}
               <div class="w-full xl:w-1/4 px-3 mb-1 xl:mb-0">
                 <label
                   class="block uppercase tracking-wide text-center text-gray-700 text-xs md:text-sm font-regular xl:mb-2"

@@ -7,7 +7,7 @@ function BusCard({ bus, key, image, depature, arrival, seats, price }) {
     <>
       <div
         key={key}
-        className=" flex flex-row justify-between shadow-lg container m-auto"
+        className=" flex flex-row justify-between shadow-lg container mx-auto mt-[50px]"
       >
         {/* div holding image */}
         <div className=" flex flex-col justify-evenly  ">
